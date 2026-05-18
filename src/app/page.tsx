@@ -39,9 +39,9 @@ export default function Dashboard() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/50 to-transparent flex items-center">
               <div className="px-10">
-                <h1 className="text-4xl font-bold text-white mb-3">
+                <h1 className="text-4xl font-bold text-white mb-3 drop-shadow-lg">
                   Plan your best life
                 </h1>
                 <p className="text-indigo-100 text-lg max-w-md mb-6">
@@ -66,7 +66,7 @@ export default function Dashboard() {
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <Link href="/goals" className="absolute inset-0 bg-black/40 hover:bg-black/50 transition-colors flex items-end p-5">
+              <Link href="/goals" className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent hover:from-black/70 transition-colors flex items-end p-5">
                 <div>
                   <h3 className="text-white font-bold text-lg">Set Goals</h3>
                   <p className="text-white/80 text-sm">Define what matters most to you</p>
@@ -80,7 +80,7 @@ export default function Dashboard() {
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <Link href="/tasks" className="absolute inset-0 bg-black/40 hover:bg-black/50 transition-colors flex items-end p-5">
+              <Link href="/tasks" className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent hover:from-black/70 transition-colors flex items-end p-5">
                 <div>
                   <h3 className="text-white font-bold text-lg">Track Tasks</h3>
                   <p className="text-white/80 text-sm">Break goals into daily actions</p>
@@ -94,7 +94,7 @@ export default function Dashboard() {
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <Link href="/schedule" className="absolute inset-0 bg-black/40 hover:bg-black/50 transition-colors flex items-end p-5">
+              <Link href="/schedule" className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent hover:from-black/70 transition-colors flex items-end p-5">
                 <div>
                   <h3 className="text-white font-bold text-lg">Own Your Day</h3>
                   <p className="text-white/80 text-sm">Schedule time blocks that work</p>
@@ -113,9 +113,9 @@ export default function Dashboard() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/50 to-transparent flex items-center">
               <div className="px-10">
-                <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+                <h1 className="text-3xl font-bold text-white drop-shadow-lg">Dashboard</h1>
                 <p className="text-indigo-100 mt-1">Your life at a glance</p>
               </div>
             </div>

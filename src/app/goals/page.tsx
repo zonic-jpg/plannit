@@ -17,7 +17,7 @@ export default function GoalsPage() {
     <div className="p-8 max-w-4xl mx-auto">
       <div className="relative rounded-2xl overflow-hidden h-40 mb-8">
         <Image src="/images/goals-motivation.jpg" alt="Achieving goals" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center justify-between px-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/50 to-transparent flex items-center justify-between px-10">
           <div>
             <h1 className="text-3xl font-bold text-white">Goals</h1>
             <p className="text-indigo-100 mt-1">Track your life goals</p>
