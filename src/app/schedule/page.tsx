@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   getScheduleEntries,
   addScheduleEntry,
@@ -54,24 +55,27 @@ export default function SchedulePage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-900">Schedule</h1>
-          <p className="text-zinc-500 mt-1">Plan your day</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <input
-            type="date"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-3 py-2 border border-zinc-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <button
-            onClick={() => setShowForm(true)}
-            className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
-          >
-            + Add Entry
-          </button>
+      <div className="relative rounded-2xl overflow-hidden h-40 mb-8">
+        <Image src="/images/schedule-focus.jpg" alt="Focused scheduling" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center justify-between px-10">
+          <div>
+            <h1 className="text-3xl font-bold text-white">Schedule</h1>
+            <p className="text-indigo-100 mt-1">Plan your day</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="px-3 py-2 border border-white/20 bg-white/10 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-white/50 [color-scheme:dark]"
+            />
+            <button
+              onClick={() => setShowForm(true)}
+              className="px-4 py-2 text-sm font-medium text-indigo-700 bg-white rounded-lg hover:bg-indigo-50 transition-colors"
+            >
+              + Add Entry
+            </button>
+          </div>
         </div>
       </div>
 

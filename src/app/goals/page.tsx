@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { getGoals, addGoal, updateGoal, deleteGoal } from "@/lib/store";
 import { useStoreData } from "@/lib/useStore";
 import type { Goal } from "@/lib/types";
@@ -14,17 +15,20 @@ export default function GoalsPage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-900">Goals</h1>
-          <p className="text-zinc-500 mt-1">Track your life goals</p>
+      <div className="relative rounded-2xl overflow-hidden h-40 mb-8">
+        <Image src="/images/goals-motivation.jpg" alt="Achieving goals" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center justify-between px-10">
+          <div>
+            <h1 className="text-3xl font-bold text-white">Goals</h1>
+            <p className="text-indigo-100 mt-1">Track your life goals</p>
+          </div>
+          <button
+            onClick={() => { setEditingGoal(null); setShowForm(true); }}
+            className="px-4 py-2 text-sm font-medium text-indigo-700 bg-white rounded-lg hover:bg-indigo-50 transition-colors"
+          >
+            + New Goal
+          </button>
         </div>
-        <button
-          onClick={() => { setEditingGoal(null); setShowForm(true); }}
-          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
-        >
-          + New Goal
-        </button>
       </div>
 
       {(showForm || editingGoal) && (

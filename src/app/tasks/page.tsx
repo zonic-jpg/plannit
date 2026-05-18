@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { getTasks, addTask, updateTask, deleteTask, getGoals } from "@/lib/store";
 import { useStoreData } from "@/lib/useStore";
 import type { Task } from "@/lib/types";
@@ -19,17 +20,20 @@ export default function TasksPage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-900">Tasks</h1>
-          <p className="text-zinc-500 mt-1">Manage your daily tasks</p>
+      <div className="relative rounded-2xl overflow-hidden h-40 mb-8">
+        <Image src="/images/productivity.jpg" alt="Productive planning" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 flex items-center justify-between px-10">
+          <div>
+            <h1 className="text-3xl font-bold text-white">Tasks</h1>
+            <p className="text-indigo-100 mt-1">Manage your daily tasks</p>
+          </div>
+          <button
+            onClick={() => { setEditingTask(null); setShowForm(true); }}
+            className="px-4 py-2 text-sm font-medium text-indigo-700 bg-white rounded-lg hover:bg-indigo-50 transition-colors"
+          >
+            + New Task
+          </button>
         </div>
-        <button
-          onClick={() => { setEditingTask(null); setShowForm(true); }}
-          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
-        >
-          + New Task
-        </button>
       </div>
 
       <div className="flex gap-2 mb-6">
