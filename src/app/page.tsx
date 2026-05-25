@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Header from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import { COUNTRIES } from "@/lib/types";
@@ -27,7 +28,17 @@ export default function HomePage() {
       <Header />
 
       {/* Hero */}
-      <section className="flex-1 flex flex-col items-center justify-center px-6 py-16 md:py-24 lg:py-32 text-center">
+      <section className="relative flex-1 flex flex-col items-center justify-center px-6 py-20 md:py-28 lg:py-36 text-center overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/hero-aspirational.jpg"
+            alt="Aspirational lifestyle"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-white/90" />
+        </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight max-w-3xl">
           Your life, <span className="text-accent">planned.</span>
         </h1>
@@ -37,7 +48,7 @@ export default function HomePage() {
         </p>
         <button
           onClick={() => setShowForm(true)}
-          className="mt-10 inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full text-base sm:text-lg font-medium hover:bg-accent/90 transition-colors"
+          className="mt-10 inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full text-base sm:text-lg font-medium hover:bg-accent/90 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02]"
         >
           Build my Life Plan
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="ml-1">
