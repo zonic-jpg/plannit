@@ -1,15 +1,19 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMemo, useState, Suspense } from "react";
+import { useMemo, useState, useEffect, Suspense } from "react";
 import { analyzeGoals } from "@/lib/goalAnalyzer";
 import { downloadICS } from "@/lib/calendarExport";
 import { sharePlan, exportPlanAsJSON } from "@/lib/sharePlan";
+import { getSiteConfig } from "@/lib/siteConfig";
+import { getSession } from "@/lib/auth";
+import { trackEvent } from "@/lib/analytics";
 import type { AnalysisResult } from "@/lib/types";
 import Header from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import Timeline from "@/components/Timeline";
 import GoalCard from "@/components/GoalCard";
+import BrandCard from "@/components/BrandCard";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -28,7 +32,28 @@ function ResultsContent() {
   const [shareMsg, setShareMsg] = useState("");
   const [editingAdvice, setEditingAdvice] = useState<number | null>(null);
 
+  const user = getSession();
+  const config = getSiteConfig();
+  const activeBrands = config.brandPlacements.filter((b) => b.active);
+
+  useEffect(() => {
+    trackEvent("page_view", { userId: user?.id, metadata: { page: "results" } });
+    result.goals.forEach((g) => {
+      trackEvent("goal_created", { userId: user?.id, goalCategory: g.category, metadata: { goalTitle: g.title } });
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function getBrandsForCategory(category: string) {
+    return activeBrands.filter((b) => b.categories.includes(category));
+  }
+
   function handleSelectOption(goalId: string, optionId: string) {
+    const goal = result.goals.find((g) => g.id === goalId);
+    trackEvent("option_selected", {
+      userId: user?.id,
+      goalCategory: goal?.category,
+      metadata: { goalId, optionId },
+    });
     setResult((prev) => ({
       ...prev,
       goals: prev.goals.map((g) =>
@@ -55,11 +80,22 @@ function ResultsContent() {
   }
 
   async function handleShare() {
+    trackEvent("plan_shared", { userId: user?.id });
     const r = await sharePlan(result, age);
     if (r === "copied") {
       setShareMsg("Copied to clipboard!");
       setTimeout(() => setShareMsg(""), 2000);
     }
+  }
+
+  function handleExport() {
+    trackEvent("plan_exported", { userId: user?.id });
+    exportPlanAsJSON(result, age);
+  }
+
+  function handleCalendar() {
+    trackEvent("calendar_synced", { userId: user?.id });
+    downloadICS(result.goals, age);
   }
 
   const selectedTotal = result.goals.reduce((sum, g) => {
@@ -97,13 +133,13 @@ function ResultsContent() {
               {shareMsg || "Share"}
             </button>
             <button
-              onClick={() => exportPlanAsJSON(result, age)}
+              onClick={handleExport}
               className="px-4 py-2 text-sm font-medium text-foreground bg-card-bg rounded-full hover:bg-zinc-200 transition-colors"
             >
               Export
             </button>
             <button
-              onClick={() => downloadICS(result.goals, age)}
+              onClick={handleCalendar}
               className="px-4 py-2 text-sm font-medium text-white bg-accent rounded-full hover:bg-accent/90 transition-colors"
             >
               Sync to calendar
@@ -118,14 +154,25 @@ function ResultsContent() {
 
         {/* Goal Cards */}
         <div className="space-y-6 mb-10">
-          {result.goals.map((goal) => (
-            <GoalCard
-              key={goal.id}
-              goal={goal}
-              onSelectOption={handleSelectOption}
-              onEditGoal={handleEditGoal}
-            />
-          ))}
+          {result.goals.map((goal) => {
+            const brands = getBrandsForCategory(goal.category);
+            return (
+              <div key={goal.id} className="space-y-3">
+                <GoalCard
+                  goal={goal}
+                  onSelectOption={handleSelectOption}
+                  onEditGoal={handleEditGoal}
+                />
+                {brands.length > 0 && (
+                  <div className="space-y-2 pl-4 border-l-2 border-accent/10">
+                    {brands.map((b) => (
+                      <BrandCard key={b.id} brand={b} goalCategory={goal.category} userId={user?.id ?? null} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Cost Summary */}
@@ -201,7 +248,7 @@ function ResultsContent() {
             Share plan
           </button>
           <button
-            onClick={() => downloadICS(result.goals, age)}
+            onClick={handleCalendar}
             className="px-8 py-4 text-base font-medium text-white bg-accent rounded-full hover:bg-accent/90 transition-colors"
           >
             Sync milestones to calendar
