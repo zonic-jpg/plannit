@@ -7,6 +7,7 @@ import type {
   UserInput,
 } from "./types";
 import { COUNTRIES } from "./types";
+import { getAssetUrl } from "./assetDatabase";
 
 const GOAL_PATTERNS: {
   keywords: string[];
@@ -233,8 +234,16 @@ export function analyzeGoals(input: UserInput): AnalysisResult {
   const totalInflation = goals.reduce((sum, g) => sum + g.inflationAdjustedCost, 0);
   const maxAge = Math.max(...goals.map((g) => g.endAge));
 
+  const finalGoals = goals.map((g) => ({
+    ...g,
+    options: g.options.map((o) => ({
+      ...o,
+      imageUrl: getAssetUrl(g.category, o.imageUrl),
+    })),
+  }));
+
   return {
-    goals,
+    goals: finalGoals,
     totalCost,
     totalInflationAdjusted: totalInflation,
     currency: country.currency,
