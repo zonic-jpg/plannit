@@ -105,7 +105,7 @@ export default function AdminPage() {
               {cfg.featureCards.map((card, i) => (
                 <div key={i} className="bg-card-bg rounded-xl p-4 space-y-3">
                   <div className="flex items-center gap-2 text-sm font-medium text-muted">Card {i + 1}</div>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <Field label="Icon" value={card.icon} onChange={(v) => {
                       const cards = [...cfg.featureCards];
                       cards[i] = { ...cards[i], icon: v };
@@ -298,7 +298,7 @@ export default function AdminPage() {
                       {b.active ? "Active" : "Inactive"}
                     </span>
                   </div>
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <Stat label="Impressions" value={stats.impressions} small />
                     <Stat label="Clicks" value={stats.clicks} small />
                     <Stat label="CTR" value={`${(stats.ctr * 100).toFixed(1)}%`} small />
