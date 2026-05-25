@@ -128,6 +128,28 @@ const GOAL_PATTERNS: {
       { name: "Marathon Training", brand: "Running", description: "Structured marathon prep course", imageUrl: "/images/goals/health.jpg", estimatedPrice: 1500, supplier: "RunAfrica", link: "#" },
     ],
   },
+  {
+    keywords: ["spiritual", "faith", "church", "mosque", "pilgrimage", "hajj", "meditation", "pray", "give back", "charity", "tithe", "volunteer"],
+    category: "spiritual" as GoalCategory,
+    baseCost: 5000,
+    durationYears: 1,
+    options: [
+      { name: "Hajj Pilgrimage", brand: "Sacred Journey", description: "Once-in-a-lifetime spiritual pilgrimage", imageUrl: "/images/goals/other.jpg", estimatedPrice: 8000, supplier: "Hajj Operators", link: "#" },
+      { name: "Holy Land Tour", brand: "Faith Travel", description: "Visit Jerusalem, Bethlehem, and sacred sites", imageUrl: "/images/goals/other.jpg", estimatedPrice: 6000, supplier: "Faith Tours", link: "#" },
+      { name: "Meditation Retreat", brand: "Inner Peace", description: "30-day mindfulness and wellness retreat", imageUrl: "/images/goals/other.jpg", estimatedPrice: 3000, supplier: "Retreat centers", link: "#" },
+    ],
+  },
+  {
+    keywords: ["achievement", "award", "book", "publish", "speak", "public speaking", "ted talk", "record", "certification", "license"],
+    category: "achievement" as GoalCategory,
+    baseCost: 5000,
+    durationYears: 2,
+    options: [
+      { name: "Publish a Book", brand: "Author", description: "Write and self-publish your story", imageUrl: "/images/goals/other.jpg", estimatedPrice: 5000, supplier: "Amazon KDP / Local publishers", link: "#" },
+      { name: "Professional Certification", brand: "Credential", description: "Industry-recognized certification", imageUrl: "/images/goals/education.jpg", estimatedPrice: 3000, supplier: "Professional bodies", link: "#" },
+      { name: "Public Speaking Course", brand: "Stage", description: "Master the art of public speaking", imageUrl: "/images/goals/other.jpg", estimatedPrice: 2000, supplier: "Toastmasters / coaches", link: "#" },
+    ],
+  },
 ];
 
 function matchGoals(text: string): typeof GOAL_PATTERNS[number][] {
@@ -265,6 +287,8 @@ function getGoalTitle(category: GoalCategory, rawInput: string): string {
     investment: "Build Investment Portfolio",
     health: "Health & Fitness Program",
     business: "Launch a Business",
+    spiritual: lower.includes("hajj") ? "Hajj Pilgrimage" : lower.includes("meditat") ? "Meditation Practice" : "Spiritual Journey",
+    achievement: lower.includes("book") || lower.includes("publish") ? "Publish a Book" : lower.includes("speak") ? "Public Speaking Mastery" : "Personal Achievement",
     other: "Personal Goal",
   };
   return titles[category];
@@ -282,6 +306,8 @@ function getGoalDescription(category: GoalCategory): string {
     investment: "Grow your wealth through diversified investments.",
     health: "Invest in your physical and mental wellbeing.",
     business: "Create an additional income stream through entrepreneurship.",
+    spiritual: "Nurture your inner life, faith, and sense of purpose.",
+    achievement: "Reach a meaningful personal milestone that defines your legacy.",
     other: "A personal milestone worth planning for.",
   };
   return descs[category];

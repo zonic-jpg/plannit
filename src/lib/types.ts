@@ -37,6 +37,8 @@ export type GoalCategory =
   | "investment"
   | "health"
   | "business"
+  | "spiritual"
+  | "achievement"
   | "other";
 
 export interface GoalOption {
@@ -60,17 +62,51 @@ export interface AnalysisResult {
 }
 
 export const CATEGORY_LABELS: Record<GoalCategory, string> = {
-  education: "Education",
-  career: "Career",
-  property: "Property",
-  vehicle: "Vehicle",
-  family: "Family",
-  travel: "Travel",
-  luxury: "Luxury",
-  investment: "Investment",
+  education: "Education & Skills",
+  career: "Business & Career",
+  property: "Property & Home",
+  vehicle: "Vehicles & Transport",
+  family: "Family & Relationships",
+  travel: "Travel & Experiences",
+  luxury: "Material & Luxury",
+  investment: "Savings & Investments",
   health: "Health & Wellness",
-  business: "Business",
+  business: "Business & Career",
+  spiritual: "Spiritual & Purpose",
+  achievement: "Achievements & Milestones",
   other: "Other",
+};
+
+export const CATEGORY_SUBTITLES: Record<GoalCategory, string> = {
+  education: "Degrees, certifications, kids' school",
+  career: "Promotions, salary targets, side hustles",
+  property: "Buy, build, or upgrade your home",
+  vehicle: "Cars, upgrades, mobility",
+  family: "Marriage, children, legacy",
+  travel: "Holidays, pilgrimages, bucket list trips",
+  luxury: "Watches, fashion, fine living",
+  investment: "Emergency fund, T-bills, stocks, crypto",
+  health: "Fitness, mental health, longevity",
+  business: "Startups, franchises, partnerships",
+  spiritual: "Faith, pilgrimage, inner growth, giving",
+  achievement: "Marathon, book, award, public speaking",
+  other: "Anything else you dream of",
+};
+
+export const CATEGORY_TAGS: Record<GoalCategory, string[]> = {
+  education: ["growth", "family"],
+  career: ["income", "growth"],
+  property: ["shelter", "asset"],
+  vehicle: ["mobility", "asset"],
+  family: ["love", "legacy"],
+  travel: ["experience", "growth"],
+  luxury: ["reward", "lifestyle"],
+  investment: ["safety-net", "liquidity"],
+  health: ["wellness", "longevity"],
+  business: ["income", "growth"],
+  spiritual: ["purpose", "peace"],
+  achievement: ["growth", "legacy"],
+  other: ["personal"],
 };
 
 export const CATEGORY_ICONS: Record<GoalCategory, string> = {
@@ -84,6 +120,8 @@ export const CATEGORY_ICONS: Record<GoalCategory, string> = {
   investment: "\u{1F4C8}",
   health: "\u{1F3CB}\u{FE0F}",
   business: "\u{1F3E2}",
+  spiritual: "\u{1F54A}\u{FE0F}",
+  achievement: "\u{1F3C6}",
   other: "\u{2B50}",
 };
 

@@ -6,6 +6,8 @@ import Image from "next/image";
 import { getSiteConfig } from "@/lib/siteConfig";
 import type { SiteConfig } from "@/lib/siteConfig";
 import { getSession } from "@/lib/auth";
+import { CATEGORY_LABELS, CATEGORY_SUBTITLES, CATEGORY_TAGS, CATEGORY_ICONS } from "@/lib/types";
+import type { GoalCategory } from "@/lib/types";
 
 export default function HomePage() {
   const router = useRouter();
@@ -95,21 +97,23 @@ export default function HomePage() {
       {/* Input Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="p-6 sm:p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">Tell us about you</h2>
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="text-2xl font-bold text-foreground">What do you want from life?</h2>
                 <button onClick={() => setShowForm(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-zinc-100 text-muted">✕</button>
               </div>
+              <p className="text-sm text-muted mb-6">Tap categories for inspiration, then describe your goals below.</p>
+
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Age</label>
-                    <input type="number" min={16} max={80} value={age} onChange={(e) => setAge(e.target.value)} placeholder="25" required className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40" />
+                    <label className="block text-xs font-medium text-foreground mb-1">Age</label>
+                    <input type="number" min={16} max={80} value={age} onChange={(e) => setAge(e.target.value)} placeholder="25" required className="w-full px-3 py-2.5 bg-card-bg border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/40" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Gender</label>
-                    <select value={gender} onChange={(e) => setGender(e.target.value)} required className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40">
+                    <label className="block text-xs font-medium text-foreground mb-1">Gender</label>
+                    <select value={gender} onChange={(e) => setGender(e.target.value)} required className="w-full px-3 py-2.5 bg-card-bg border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/40">
                       <option value="">Select</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -118,19 +122,54 @@ export default function HomePage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Country</label>
-                    <select value={country} onChange={(e) => setCountry(e.target.value)} className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40">
+                    <label className="block text-xs font-medium text-foreground mb-1">Country</label>
+                    <select value={country} onChange={(e) => setCountry(e.target.value)} className="w-full px-3 py-2.5 bg-card-bg border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/40">
                       {cfg.countries.map((c) => (
                         <option key={c.code} value={c.code}>{c.name}</option>
                       ))}
                     </select>
                   </div>
                 </div>
+
+                {/* Category cards */}
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Your life goals</label>
-                  <p className="text-xs text-muted mb-2">Write freely — e.g. &quot;Get a master&apos;s degree, buy a home, start a family, buy a BMW, travel to Dubai&quot;</p>
-                  <textarea value={goals} onChange={(e) => setGoals(e.target.value)} rows={5} required placeholder="I want to get a bachelor's degree, then a master's, buy a car, purchase a home, get married, travel to Dubai, and start investing..." className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40 resize-none" />
+                  <label className="block text-xs font-medium text-foreground mb-2">Pick categories that matter to you</label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {(["property", "vehicle", "education", "investment", "career", "family", "travel", "luxury", "health", "spiritual", "achievement", "other"] as GoalCategory[]).map((cat) => {
+                      const isSelected = goals.toLowerCase().includes(CATEGORY_LABELS[cat].toLowerCase().split(" ")[0].toLowerCase());
+                      return (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => {
+                            const hint = CATEGORY_LABELS[cat].split(" & ")[0].toLowerCase();
+                            if (!goals.toLowerCase().includes(hint)) {
+                              setGoals((prev) => (prev ? prev + ", " : "") + CATEGORY_SUBTITLES[cat].split(",")[0].toLowerCase());
+                            }
+                          }}
+                          className={`text-left p-3 rounded-xl border transition-all ${
+                            isSelected ? "border-accent bg-accent-light" : "border-zinc-100 bg-card-bg hover:border-accent/30"
+                          }`}
+                        >
+                          <span className="text-lg">{CATEGORY_ICONS[cat]}</span>
+                          <p className="text-xs font-semibold text-foreground mt-1">{CATEGORY_LABELS[cat]}</p>
+                          <p className="text-[10px] text-muted leading-tight mt-0.5">{CATEGORY_SUBTITLES[cat]}</p>
+                          <div className="flex gap-1 mt-1.5">
+                            {CATEGORY_TAGS[cat].map((tag) => (
+                              <span key={tag} className="text-[9px] uppercase tracking-wide text-muted/60 font-medium">{tag}</span>
+                            ))}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-foreground mb-1">Describe your goals in your own words</label>
+                  <textarea value={goals} onChange={(e) => setGoals(e.target.value)} rows={4} required placeholder="I want to get a degree, buy a home, start a family, travel to Dubai, grow spiritually, run a marathon..." className="w-full px-3 py-2.5 bg-card-bg border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 resize-none" />
+                </div>
+
                 <button type="submit" disabled={loading} className="w-full py-4 bg-accent text-white text-base font-semibold rounded-xl hover:bg-accent/90 transition-colors disabled:opacity-50">
                   {loading ? "Analyzing..." : "Plan My Life →"}
                 </button>

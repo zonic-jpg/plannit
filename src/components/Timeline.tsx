@@ -19,6 +19,8 @@ const COLORS: Record<string, string> = {
   investment: "bg-green-500",
   health: "bg-red-400",
   business: "bg-violet-500",
+  spiritual: "bg-indigo-400",
+  achievement: "bg-yellow-500",
   other: "bg-zinc-500",
 };
 
