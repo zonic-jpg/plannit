@@ -2,7 +2,7 @@ import type { AnalysisResult } from "./types";
 
 export function generateShareText(result: AnalysisResult, userAge: number): string {
   const lines = [
-    `🎯 My Planit Life Plan (Age ${userAge})`,
+    `🎯 My RUBBA Life Plan (Age ${userAge})`,
     "",
     "Goals:",
     ...result.goals.map(
@@ -12,7 +12,7 @@ export function generateShareText(result: AnalysisResult, userAge: number): stri
     "",
     `Total estimated cost: ${result.currency} ${result.totalInflationAdjusted.toLocaleString()} (inflation adjusted)`,
     "",
-    "Built with planit — Made for the long view.",
+    "Built with RUBBA — Plan your life, your way.",
   ];
   return lines.join("\n");
 }
@@ -22,7 +22,7 @@ export async function sharePlan(result: AnalysisResult, userAge: number) {
 
   if (navigator.share) {
     try {
-      await navigator.share({ title: "My Planit Life Plan", text });
+      await navigator.share({ title: "My RUBBA Life Plan", text });
       return;
     } catch {
       // user cancelled or not supported
@@ -39,7 +39,7 @@ export function exportPlanAsJSON(result: AnalysisResult, userAge: number) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "planit-life-plan.json";
+  a.download = "rubba-life-plan.json";
   a.click();
   URL.revokeObjectURL(url);
 }

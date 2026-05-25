@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Planit — Your life, planned.",
+  title: "RUBBA — Your life, planned.",
   description: "Turn every ambition into a costed, editable Life Plan.",
 };
 
