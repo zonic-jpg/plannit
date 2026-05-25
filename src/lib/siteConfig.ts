@@ -39,7 +39,7 @@ const DEFAULT_CONFIG: SiteConfig = {
   heroSubtitle:
     "Turn every ambition — a first home, a wedding, your kid's university, or your 50th birthday — into a costed, editable Life Plan.",
   heroButtonText: "Build my Life Plan",
-  heroImageUrl: "/images/hero.jpg",
+  heroImageUrl: "/images/hero-main.jpg",
   featureCards: [
     {
       icon: "🎯",
