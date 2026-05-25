@@ -1,7 +1,7 @@
 "use client";
 
 import type { LifeGoal } from "@/lib/types";
-import { CATEGORY_ICONS, CATEGORY_LABELS } from "@/lib/types";
+import { CATEGORY_ICONS } from "@/lib/types";
 
 interface TimelineProps {
   goals: LifeGoal[];
@@ -25,54 +25,53 @@ const COLORS: Record<string, string> = {
 export default function Timeline({ goals, userAge }: TimelineProps) {
   if (goals.length === 0) return null;
 
-  const minAge = userAge;
   const maxAge = Math.max(...goals.map((g) => g.endAge)) + 2;
-  const totalYears = maxAge - minAge;
+  const totalYears = maxAge - userAge;
 
   return (
-    <div className="bg-white rounded-xl border border-zinc-200 p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-zinc-900 mb-6">Your Life Timeline</h2>
+    <div className="bg-white rounded-2xl border border-zinc-100 p-6 sm:p-8">
+      <h2 className="text-xl font-semibold text-foreground mb-8">Your timeline</h2>
 
-      <div className="relative">
-        <div className="flex items-center justify-between text-xs text-zinc-400 mb-2 px-1">
-          {Array.from({ length: Math.min(totalYears + 1, 12) }, (_, i) => {
-            const age = minAge + Math.round((i / Math.min(totalYears, 11)) * totalYears);
-            return <span key={i}>Age {age}</span>;
-          })}
-        </div>
+      {/* Age markers */}
+      <div className="hidden sm:flex items-center justify-between text-xs text-muted mb-3">
+        {Array.from({ length: Math.min(totalYears + 1, 8) }, (_, i) => {
+          const age = userAge + Math.round((i / Math.min(totalYears, 7)) * totalYears);
+          return <span key={i}>{age}</span>;
+        })}
+      </div>
+      <div className="hidden sm:block h-px bg-zinc-200 mb-6" />
 
-        <div className="h-1 bg-zinc-100 rounded-full mb-6" />
+      {/* Goal bars */}
+      <div className="space-y-3">
+        {goals.map((goal) => {
+          const leftPct = ((goal.startAge - userAge) / totalYears) * 100;
+          const widthPct = Math.max(((goal.endAge - goal.startAge) / totalYears) * 100, 10);
 
-        <div className="space-y-3">
-          {goals.map((goal) => {
-            const leftPct = ((goal.startAge - minAge) / totalYears) * 100;
-            const widthPct = ((goal.endAge - goal.startAge) / totalYears) * 100;
-
-            return (
-              <div key={goal.id} className="relative h-12">
-                <div
-                  className={`absolute h-full rounded-lg ${COLORS[goal.category] ?? "bg-zinc-400"} flex items-center px-3 min-w-[120px] transition-all`}
-                  style={{ left: `${leftPct}%`, width: `${Math.max(widthPct, 8)}%` }}
-                >
-                  <span className="text-white text-xs font-medium truncate">
-                    {CATEGORY_ICONS[goal.category]} {goal.title}
-                  </span>
-                </div>
+          return (
+            <div key={goal.id} className="relative h-11 sm:h-10">
+              {/* Desktop: positioned bar */}
+              <div
+                className="hidden sm:flex absolute h-full rounded-xl items-center px-4 min-w-[140px] transition-all"
+                style={{
+                  left: `${leftPct}%`,
+                  width: `${widthPct}%`,
+                  backgroundColor: `var(--tw-${COLORS[goal.category]?.replace("bg-", "")}, #6366f1)`,
+                }}
+              >
+                <span className={`absolute inset-0 rounded-xl ${COLORS[goal.category]}`} />
+                <span className="relative text-white text-xs font-medium truncate">
+                  {CATEGORY_ICONS[goal.category]} {goal.title} · {goal.startAge}–{goal.endAge}
+                </span>
               </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          {goals.map((goal) => (
-            <div key={goal.id} className="flex items-center gap-1.5 text-xs text-zinc-600">
-              <div className={`w-3 h-3 rounded ${COLORS[goal.category] ?? "bg-zinc-400"}`} />
-              {CATEGORY_LABELS[goal.category]}
-              {goal.concurrent && <span className="text-zinc-400">(concurrent)</span>}
-              {goal.dependsOn !== "none" && <span className="text-zinc-400">(sequential)</span>}
+              {/* Mobile: full-width card */}
+              <div className={`sm:hidden flex items-center gap-3 px-4 h-full rounded-xl ${COLORS[goal.category]}`}>
+                <span className="text-white text-xs font-medium truncate">
+                  {CATEGORY_ICONS[goal.category]} {goal.title} · Age {goal.startAge}–{goal.endAge}
+                </span>
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );

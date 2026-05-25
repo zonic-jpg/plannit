@@ -2,90 +2,97 @@
 
 import Image from "next/image";
 import type { LifeGoal } from "@/lib/types";
-import { CATEGORY_ICONS, CATEGORY_LABELS } from "@/lib/types";
+import { CATEGORY_ICONS } from "@/lib/types";
 
 interface GoalCardProps {
   goal: LifeGoal;
   onSelectOption: (goalId: string, optionId: string) => void;
+  onEditGoal: (goalId: string, field: string, value: string) => void;
 }
 
-export default function GoalCard({ goal, onSelectOption }: GoalCardProps) {
+export default function GoalCard({ goal, onSelectOption, onEditGoal }: GoalCardProps) {
   return (
-    <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
-          <div>
+    <div className="bg-white rounded-2xl border border-zinc-100 overflow-hidden">
+      <div className="p-6 sm:p-8">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+          <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-2xl">{CATEGORY_ICONS[goal.category]}</span>
-              <h3 className="text-lg font-semibold text-zinc-900">{goal.title}</h3>
+              <span className="text-xl">{CATEGORY_ICONS[goal.category]}</span>
+              <input
+                type="text"
+                defaultValue={goal.title}
+                onBlur={(e) => onEditGoal(goal.id, "title", e.target.value)}
+                className="text-lg font-semibold text-foreground bg-transparent border-0 border-b border-transparent hover:border-zinc-200 focus:border-accent focus:outline-none w-full transition-colors"
+              />
             </div>
-            <p className="text-sm text-zinc-500">{goal.description}</p>
+            <p className="text-sm text-muted mt-1">{goal.description}</p>
           </div>
-          <div className="text-right shrink-0">
-            <p className="text-xs text-zinc-400">{CATEGORY_LABELS[goal.category]}</p>
-            <p className="text-xs text-zinc-400 mt-1">Age {goal.startAge} – {goal.endAge}</p>
+          <div className="flex items-center gap-3 text-sm shrink-0">
+            <span className="px-3 py-1 bg-card-bg rounded-full text-muted text-xs font-medium">
+              Age {goal.startAge}–{goal.endAge}
+            </span>
+            {goal.concurrent && (
+              <span className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Concurrent</span>
+            )}
+            {goal.dependsOn !== "none" && (
+              <span className="px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-medium">Sequential</span>
+            )}
           </div>
         </div>
 
-        <div className="flex gap-4 mb-4 text-sm">
-          <div className="bg-zinc-50 rounded-lg px-4 py-2">
-            <p className="text-xs text-zinc-400">Base Cost</p>
-            <p className="font-semibold text-zinc-900">
+        {/* Cost summary */}
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="bg-card-bg rounded-xl p-4">
+            <p className="text-xs text-muted mb-1">Base cost</p>
+            <p className="text-lg font-semibold text-foreground">
               {goal.currency} {goal.estimatedCost.toLocaleString()}
             </p>
           </div>
-          <div className="bg-indigo-50 rounded-lg px-4 py-2">
-            <p className="text-xs text-indigo-400">Inflation Adjusted</p>
-            <p className="font-semibold text-indigo-700">
+          <div className="bg-accent-light rounded-xl p-4">
+            <p className="text-xs text-accent/70 mb-1">Inflation adjusted</p>
+            <p className="text-lg font-semibold text-accent">
               {goal.currency} {goal.inflationAdjustedCost.toLocaleString()}
             </p>
           </div>
-          {goal.concurrent && (
-            <div className="bg-green-50 rounded-lg px-4 py-2 flex items-center">
-              <p className="text-xs font-medium text-green-700">Concurrent</p>
-            </div>
-          )}
-          {goal.dependsOn !== "none" && (
-            <div className="bg-amber-50 rounded-lg px-4 py-2 flex items-center">
-              <p className="text-xs font-medium text-amber-700">Sequential</p>
-            </div>
-          )}
         </div>
 
-        <p className="text-xs text-zinc-500 italic mb-4">{goal.aiNotes}</p>
-
-        <h4 className="text-sm font-semibold text-zinc-700 mb-3">Select an option:</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Options grid */}
+        <p className="text-sm font-medium text-foreground mb-3">Choose an option</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {goal.options.map((option) => {
             const selected = goal.selectedOptionId === option.id;
             return (
               <button
                 key={option.id}
                 onClick={() => onSelectOption(goal.id, option.id)}
-                className={`text-left rounded-lg border-2 p-4 transition-all ${
+                className={`text-left rounded-xl border-2 overflow-hidden transition-all ${
                   selected
-                    ? "border-indigo-500 bg-indigo-50 ring-2 ring-indigo-200"
-                    : "border-zinc-200 hover:border-indigo-300 bg-white"
+                    ? "border-accent ring-1 ring-accent/20"
+                    : "border-zinc-100 hover:border-zinc-300"
                 }`}
               >
-                <div className="relative h-24 rounded-lg overflow-hidden mb-3 bg-zinc-100">
+                <div className="relative aspect-[16/10] bg-card-bg">
                   <Image
                     src={option.imageUrl}
                     alt={option.name}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 33vw"
                   />
+                  {selected && (
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                  )}
                 </div>
-                <p className="text-sm font-semibold text-zinc-900">{option.name}</p>
-                <p className="text-xs text-zinc-500 mb-1">{option.brand}</p>
-                <p className="text-xs text-zinc-400 mb-2">{option.description}</p>
-                <p className="text-sm font-bold text-indigo-600">
-                  {goal.currency} {option.estimatedPrice.toLocaleString()}
-                </p>
-                <p className="text-xs text-zinc-400">{option.supplier}</p>
-                {selected && (
-                  <div className="mt-2 text-xs font-medium text-indigo-600">✓ Selected</div>
-                )}
+                <div className="p-3">
+                  <p className="text-sm font-semibold text-foreground">{option.name}</p>
+                  <p className="text-xs text-muted">{option.brand} · {option.supplier}</p>
+                  <p className="text-sm font-bold text-accent mt-1">
+                    {goal.currency} {option.estimatedPrice.toLocaleString()}
+                  </p>
+                </div>
               </button>
             );
           })}
