@@ -12,6 +12,7 @@ export default function HomePage() {
   const [cfg] = useState<SiteConfig>(() => getSiteConfig());
   const [showForm, setShowForm] = useState(false);
   const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   const [country, setCountry] = useState("NG");
   const [goals, setGoals] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,7 @@ export default function HomePage() {
     e.preventDefault();
     if (!age || !goals.trim()) return;
     setLoading(true);
-    const params = new URLSearchParams({ age, country, goals: goals.trim() });
+    const params = new URLSearchParams({ age, gender, country, goals: goals.trim() });
     router.push(`/results?${params.toString()}`);
   }
 
@@ -101,10 +102,20 @@ export default function HomePage() {
                 <button onClick={() => setShowForm(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-zinc-100 text-muted">✕</button>
               </div>
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Age</label>
                     <input type="number" min={16} max={80} value={age} onChange={(e) => setAge(e.target.value)} placeholder="25" required className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Gender</label>
+                    <select value={gender} onChange={(e) => setGender(e.target.value)} required className="w-full px-4 py-3 bg-card-bg border-0 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-accent/40">
+                      <option value="">Select</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="non-binary">Non-binary</option>
+                      <option value="prefer-not">Prefer not to say</option>
+                    </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Country</label>

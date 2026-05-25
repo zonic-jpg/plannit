@@ -336,5 +336,16 @@ function generateAdvice(
     "Review and adjust your plan annually to account for life changes, salary growth, and market conditions."
   );
 
+  if (input.gender === "female") {
+    advice.push(
+      "Consider factoring in maternity leave periods when planning career and family goals concurrently."
+    );
+  }
+  if (input.gender === "male") {
+    advice.push(
+      "Factor in paternity leave and family support costs when planning career and family goals together."
+    );
+  }
+
   return advice;
 }

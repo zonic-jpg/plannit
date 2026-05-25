@@ -1,5 +1,8 @@
+export type Gender = "male" | "female" | "non-binary" | "prefer-not" | "";
+
 export interface UserInput {
   age: number;
+  gender: Gender;
   country: string;
   goals: string;
 }

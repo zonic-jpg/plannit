@@ -20,12 +20,13 @@ function ResultsContent() {
   const router = useRouter();
 
   const age = parseInt(searchParams.get("age") ?? "25", 10);
+  const gender = (searchParams.get("gender") ?? "") as import("@/lib/types").Gender;
   const country = searchParams.get("country") ?? "NG";
   const goals = searchParams.get("goals") ?? "";
 
   const initialResult = useMemo(
-    () => analyzeGoals({ age, country, goals }),
-    [age, country, goals]
+    () => analyzeGoals({ age, gender, country, goals }),
+    [age, gender, country, goals]
   );
 
   const [result, setResult] = useState<AnalysisResult>(initialResult);
@@ -37,7 +38,7 @@ function ResultsContent() {
   const activeBrands = config.brandPlacements.filter((b) => b.active);
 
   useEffect(() => {
-    trackEvent("page_view", { userId: user?.id, metadata: { page: "results" } });
+    trackEvent("page_view", { userId: user?.id, metadata: { page: "results", gender } });
     result.goals.forEach((g) => {
       trackEvent("goal_created", { userId: user?.id, goalCategory: g.category, metadata: { goalTitle: g.title } });
     });
