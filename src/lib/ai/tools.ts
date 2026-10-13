@@ -78,15 +78,24 @@ export async function toolScoreLocations(
   const locationIds = pool.map((l) => l.id);
   const realtime = await fetchRealtimeBatch(locationIds, request.startDate);
 
-  const ranked = scoreLocations({
-    locations: pool,
-    preferences: request.preferences,
-    context: { dates: request.startDate, origin: request.origin },
-    realtimeByLocation: realtime,
-  });
+  const ranked = scoreLocations(
+    request.preferences,
+    pool,
+    { dates: request.startDate, origin: request.origin },
+    realtime,
+  );
 
   const max = filters.maxResults ?? 8;
-  const data = ranked.slice(0, max);
+  let data = ranked.slice(0, max);
+  if (filters.lockedCityId) {
+    const anchor = ranked.find((l) => l.id === filters.lockedCityId);
+    if (anchor) {
+      data = [
+        anchor,
+        ...ranked.filter((l) => l.id !== anchor.id).slice(0, max - 1),
+      ];
+    }
+  }
 
   return {
     data,

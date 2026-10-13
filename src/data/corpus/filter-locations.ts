@@ -88,6 +88,19 @@ export function filterLocations(
     notes.push(`tags ⊇ ${filters.requiredTags.join(", ")}`);
   }
 
+  if (filters.lockedRegion) {
+    pool = pool.filter((l) => l.region === filters.lockedRegion);
+    notes.push(`locked region ${filters.lockedRegion}`);
+  }
+
+  if (filters.lockedCityId) {
+    const anchor = pool.find((l) => l.id === filters.lockedCityId);
+    if (anchor) {
+      pool = pool.filter((l) => l.region === anchor.region);
+      notes.push(`anchored on ${anchor.name}`);
+    }
+  }
+
   const summary =
     notes.length > 0
       ? `${pool.length} cities after filters (${notes.join("; ")}).`

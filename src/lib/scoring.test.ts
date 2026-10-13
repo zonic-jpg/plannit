@@ -57,10 +57,7 @@ describe("scoreLocations (spec §4)", () => {
       const corpus = profile.filters
         ? filterLocations(getGlobalCorpus(), profile.filters).locations
         : getGlobalCorpus();
-      const ranked = scoreLocations({
-        locations: corpus,
-        preferences: profile.prefs,
-      });
+      const ranked = scoreLocations(profile.prefs, corpus);
       expect(ranked.length).toBeGreaterThan(0);
       for (const loc of ranked) {
         expect(loc.totalScore).toBeGreaterThanOrEqual(0);
@@ -71,19 +68,13 @@ describe("scoreLocations (spec §4)", () => {
 
   it("ranks Budva first for beach party in Balkans", () => {
     const { locations } = filterLocations(getGlobalCorpus(), { regions: ["Balkans"] });
-    const ranked = scoreLocations({
-      locations,
-      preferences: PROFILES[1]!.prefs,
-    });
+    const ranked = scoreLocations(PROFILES[1]!.prefs, locations);
     expect(ranked[0]?.name).toBe("Budva");
   });
 
   it("ranks Tivat first for luxury yacht in Balkans", () => {
     const { locations } = filterLocations(getGlobalCorpus(), { regions: ["Balkans"] });
-    const ranked = scoreLocations({
-      locations,
-      preferences: PROFILES[3]!.prefs,
-    });
+    const ranked = scoreLocations(PROFILES[3]!.prefs, locations);
     expect(ranked[0]?.name).toBe("Tivat");
   });
 });

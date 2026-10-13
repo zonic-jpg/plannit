@@ -70,6 +70,9 @@ export type TripFilters = {
   requiredTags?: string[];
   tourismTierMax?: 1 | 2 | 3;
   maxResults?: number;
+  /** §4 — pin a hub city while re-ranking peers in-region */
+  lockedCityId?: string;
+  lockedRegion?: Region;
 };
 
 export type ScoringContext = {

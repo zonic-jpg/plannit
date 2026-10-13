@@ -13,10 +13,10 @@ describe("§2 global dimension framework", () => {
   });
 
   it("scoring breakdown uses the same dimension ids globally", () => {
-    const ranked = scoreLocations({
-      locations: getGlobalCorpus().slice(0, 5),
-      preferences: DEFAULT_PREFERENCES,
-    });
+    const ranked = scoreLocations(
+      DEFAULT_PREFERENCES,
+      getGlobalCorpus().slice(0, 5),
+    );
     for (const loc of ranked) {
       for (const dim of SCORING_DIMENSIONS) {
         expect(loc.breakdown[dim]).toBeDefined();

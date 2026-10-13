@@ -4,11 +4,11 @@ import {
   type ScoringDimensionId,
 } from "@/data/variables";
 import type {
+  Location,
   PreferenceWeights,
   ScoredLocation,
   ScoringContext,
 } from "@/types/domain";
-import type { Location } from "@/types/domain";
 import { preferenceToDimensionWeights } from "@/lib/scoring/weights";
 import type { RealtimeSnapshot } from "@/lib/realtime/types";
 
@@ -67,39 +67,60 @@ function topDimensions(breakdown: Record<string, number>, n = 3) {
     }));
 }
 
-/**
- * Spec §4: weighted sum of dimension scores (0–100) with optional origin/dates context.
- */
-export function scoreLocations(input: ScoreLocationsInput): ScoredLocation[] {
+function scoreLocationsInner(input: ScoreLocationsInput): ScoredLocation[] {
   const weights = preferenceToDimensionWeights(input.preferences);
   void input.context;
 
-  return input.locations
-    .map((location) => {
-      const realtime = input.realtimeByLocation?.[location.id];
-      const dimScores = applyDynamicMultipliers(location.baseScores, realtime);
+  const ranked = input.locations.map((location) => {
+    const realtime = input.realtimeByLocation?.[location.id];
+    const dimScores = applyDynamicMultipliers(location.baseScores, realtime);
 
-      const breakdown: Record<string, number> = {};
-      let total = 0;
+    const breakdown: Record<string, number> = {};
+    let total = 0;
 
-      for (const dim of SCORING_DIMENSIONS) {
-        const w = weights[dim];
-        const points = w * dimScores[dim];
-        breakdown[dim] = Math.round(points * 10) / 10;
-        total += points;
-      }
+    for (const dim of SCORING_DIMENSIONS) {
+      const w = weights[dim];
+      const points = w * dimScores[dim];
+      breakdown[dim] = Math.round(points * 10) / 10;
+      total += points;
+    }
 
-      const totalScore = Math.round(Math.min(100, Math.max(0, total)));
+    const totalScore = Math.round(Math.min(100, Math.max(0, total)));
 
-      return {
-        ...location,
-        totalScore,
-        breakdown,
-        topDimensions: topDimensions(breakdown),
-        rationale: buildRationale(location, breakdown),
-      };
-    })
-    .sort((a, b) => b.totalScore - a.totalScore);
+    return {
+      ...location,
+      totalScore,
+      breakdown,
+      topDimensions: topDimensions(breakdown),
+      rationale: buildRationale(location, breakdown),
+    };
+  });
+
+  ranked.sort((a, b) => b.totalScore - a.totalScore);
+  return ranked;
+}
+
+/**
+ * §5 — pure, unit-testable scoring entry point.
+ * `scoreLocations(preferences, locations, context?)`
+ */
+export function scoreLocations(
+  preferences: PreferenceWeights,
+  locations: Location[],
+  context?: ScoringContext,
+  realtimeByLocation?: Record<string, RealtimeSnapshot>,
+): ScoredLocation[] {
+  return scoreLocationsInner({
+    preferences,
+    locations,
+    context,
+    realtimeByLocation,
+  });
+}
+
+/** @deprecated Prefer ternary `scoreLocations(prefs, locations, context)` */
+export function scoreLocationsFromInput(input: ScoreLocationsInput): ScoredLocation[] {
+  return scoreLocationsInner(input);
 }
 
 export function explainChoice(

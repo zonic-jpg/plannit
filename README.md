@@ -1,19 +1,24 @@
 # Aether
 
-AI-native travel companion — **global modern cities** (Europe, Americas, Africa, Asia) with Montenegro as the reference Balkans use case.
+AI-native travel companion — **global modern cities** with Montenegro as the reference Balkans use case.
 
-Reference trip: **5 days from Abuja (ABV)** — preference engine, filtered corpus scoring (top 8), cost bands, day-by-day itinerary.
+## Seed strategy (§3)
 
-## Location engine
+| Phase | What | In this repo |
+|--------|------|----------------|
+| **1 — Core seed** | ~80–100 Tier 1/2 cities, curated | **109 cities** in `src/data/corpus/seed/` + `public/data/locations.seed.json` |
+| **2 — Expansion** | JSON/CSV ingest, rule-based scores | `loadLocationsFromJson`, `parseLocationsCsv`, `scripts/import-locations.ts`, `scripts/import-locations-csv.ts` |
+| **3 — Dynamic** | Weather, events, seawater at runtime | `fetch-realtime.ts` + cached multipliers (OpenWeather optional) |
 
-- **109 cities** in Phase 1 seed (`src/data/corpus/seed/`)
-- Full schema: continent, region, tags, climate, tourism tier, 0–100 dimension scores
-- Export JSON: `npm run seed:export` → `public/data/locations.seed.json`
-- Import more cities: `npx tsx scripts/import-locations.ts path/to/locations.json`
+Do not invent cities in prompts — add rows to seed JSON/CSV and re-import.
 
-## Stack
+## Filtering & ranking (§4)
 
-Next.js 15, TypeScript, Tailwind, TanStack Query, Zustand, Mapbox, Vitest, Playwright
+1. Preferences + free text → agent  
+2. Hard filter corpus (continent, region, tags, locks)  
+3. `scoreLocations(preferences, locations, context?)` weighted 0–100 sum  
+4. Top **8** with breakdown + rationale  
+5. **Refine**: `POST /api/trip/refine` with `freeTextDelta` e.g. “cheaper alternative”, “better nightlife”, “more like this”
 
 ## Getting started
 
@@ -24,20 +29,21 @@ npx prisma generate
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) → **Plan my trip**. After the first plan, use **continent chips** to narrow the corpus, then plan again.
+**Plan my trip** → then **continent chips** → plan again. Region metadata only: `GET /api/locations?meta=1`.
 
 ## Scripts
 
 | Command | Description |
 |--------|-------------|
-| `npm run dev` | Dev server |
-| `npm run build` | Production build |
-| `npm run test` | Vitest (scoring + corpus) |
-| `npm run test:e2e` | Playwright plan flow |
 | `npm run seed:export` | Regenerate `public/data/locations.seed.json` |
+| `npx tsx scripts/import-locations.ts file.json` | Merge JSON seed |
+| `npx tsx scripts/import-locations-csv.ts file.csv` | Merge CSV seed |
+| `npm run test` | Vitest |
+| `npm run test:e2e` | Playwright |
 
 ## API
 
-- `POST /api/trip/plan` — `{ scoredLocations, costEstimate, itinerary, agentTrace, filterSummary }`
-- `GET /api/locations?continent=Europe&region=Balkans`
-- `GET /api/realtime?location=kotor-me`
+- `POST /api/trip/plan` — full plan + `filterSummary` + `agentTrace`
+- `POST /api/trip/refine` — delta preferences / refine phrases
+- `GET /api/dimensions` — global scoring dimension framework
+- `GET /api/locations?meta=1` — continents/regions without full corpus payload

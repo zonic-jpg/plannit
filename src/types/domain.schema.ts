@@ -35,6 +35,8 @@ export const tripFiltersSchema = z.object({
   requiredTags: z.array(z.string()).optional(),
   tourismTierMax: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
   maxResults: z.number().int().min(1).max(20).optional(),
+  lockedCityId: z.string().optional(),
+  lockedRegion: regionSchema.optional(),
 });
 
 export const locationSchema = z.object({

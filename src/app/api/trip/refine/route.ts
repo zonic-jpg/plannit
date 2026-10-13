@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { runRefineAgent } from "@/lib/ai/agent";
+import { parseRefineIntent } from "@/lib/planning/refine-intent";
 import { apiError, apiOk } from "@/lib/api/errors";
 import {
   preferenceWeightsSchema,
@@ -25,13 +26,26 @@ export async function POST(req: Request) {
   try {
     const json = await req.json();
     const parsed = bodySchema.parse(json);
+    const intent = parsed.freeTextDelta
+      ? parseRefineIntent(
+          parsed.freeTextDelta,
+          parsed.previousPlan as TripPlanApiResponse,
+        )
+      : { note: "" };
+
     const request: TripRequest = {
       ...parsed.request,
       preferences: {
         ...DEFAULT_PREFERENCES,
         ...parsed.request.preferences,
+        ...intent.preferenceDelta,
+        ...parsed.preferenceDelta,
       },
-      filters: parsed.request.filters as TripRequest["filters"],
+      filters: {
+        maxResults: 8,
+        ...parsed.request.filters,
+        ...intent.filters,
+      } as TripRequest["filters"],
       freeText: [parsed.request.freeText, parsed.freeTextDelta]
         .filter(Boolean)
         .join(" "),
@@ -48,7 +62,8 @@ export async function POST(req: Request) {
       costEstimate: refined.costEstimate,
       itinerary: refined.itinerary,
       agentTrace: refined.agentTrace,
-      summary: refined.summary,
+      summary: intent.note ? `${refined.summary} ${intent.note}` : refined.summary,
+      filterSummary: refined.filterSummary,
     });
   } catch (error) {
     if (error instanceof z.ZodError) {

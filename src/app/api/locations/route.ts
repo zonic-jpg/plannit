@@ -8,8 +8,15 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const continent = searchParams.get("continent") as Continent | null;
   const region = searchParams.get("region") as Region | null;
+  const metaOnly = searchParams.get("meta") === "1";
 
   const corpus = getGlobalCorpus();
+  const index = getRegionIndex(corpus);
+
+  if (metaOnly) {
+    return apiOk({ index, dimensions: SCORING_DIMENSION_META });
+  }
+
   const { locations } = filterLocations(corpus, {
     continents: continent ? [continent] : undefined,
     regions: region ? [region] : undefined,
@@ -19,6 +26,6 @@ export async function GET(req: Request) {
   return apiOk({
     locations,
     dimensions: SCORING_DIMENSION_META,
-    index: getRegionIndex(corpus),
+    index,
   });
 }
