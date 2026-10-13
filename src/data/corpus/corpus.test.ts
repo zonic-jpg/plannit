@@ -2,10 +2,20 @@ import { describe, expect, it } from "vitest";
 import { filterLocations } from "@/data/corpus/filter-locations";
 import { getGlobalCorpus } from "@/data/corpus/corpus";
 import { SEED_LOCATIONS } from "@/data/corpus/seed-registry";
+import { locationSchema } from "@/types/domain.schema";
+import { isRegion } from "@/types/regions";
 
 describe("global corpus", () => {
   it("Phase 1 seed has 80+ cities", () => {
     expect(SEED_LOCATIONS.length).toBeGreaterThanOrEqual(80);
+  });
+
+  it("every seed city matches Location schema (§1)", () => {
+    for (const loc of SEED_LOCATIONS) {
+      expect(isRegion(loc.region)).toBe(true);
+      const parsed = locationSchema.safeParse(loc);
+      expect(parsed.success).toBe(true);
+    }
   });
 
   it("filters Balkans to Montenegro-adjacent set", () => {

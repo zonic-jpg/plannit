@@ -2219,7 +2219,7 @@
       "country": "Australia",
       "countryCode": "AU",
       "continent": "Asia",
-      "region": "Oceania",
+      "region": "Southeast Asia",
       "coordinates": [
         151.2093,
         -33.8688
@@ -2230,7 +2230,8 @@
       "tags": [
         "beach",
         "harbour",
-        "outdoor"
+        "outdoor",
+        "pacific"
       ],
       "climateZone": "oceanic"
     },
@@ -2240,7 +2241,7 @@
       "country": "Australia",
       "countryCode": "AU",
       "continent": "Asia",
-      "region": "Oceania",
+      "region": "Southeast Asia",
       "coordinates": [
         144.9631,
         -37.8136
@@ -2251,7 +2252,8 @@
       "tags": [
         "food",
         "culture",
-        "coffee"
+        "coffee",
+        "pacific"
       ],
       "climateZone": "oceanic"
     },
@@ -2261,7 +2263,7 @@
       "country": "New Zealand",
       "countryCode": "NZ",
       "continent": "Asia",
-      "region": "Oceania",
+      "region": "Southeast Asia",
       "coordinates": [
         174.7633,
         -36.8485
@@ -2272,7 +2274,8 @@
       "tags": [
         "harbour",
         "outdoor",
-        "wine"
+        "wine",
+        "pacific"
       ],
       "climateZone": "oceanic"
     },

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CONTINENTS, REGIONS } from "@/types/regions";
 
 export const preferenceWeightsSchema = z.object({
   nightlife: z.number().min(0).max(1),
@@ -12,11 +13,12 @@ export const preferenceWeightsSchema = z.object({
   budgetTier: z.enum(["mid", "upper", "luxury"]),
 });
 
+const continentSchema = z.enum(CONTINENTS);
+const regionSchema = z.enum(REGIONS);
+
 export const tripFiltersSchema = z.object({
-  continents: z
-    .array(z.enum(["Europe", "Americas", "Africa", "Asia"]))
-    .optional(),
-  regions: z.array(z.string()).optional(),
+  continents: z.array(continentSchema).optional(),
+  regions: z.array(regionSchema).optional(),
   climateZones: z
     .array(
       z.enum([
@@ -40,8 +42,8 @@ export const locationSchema = z.object({
   name: z.string(),
   country: z.string(),
   countryCode: z.string().length(2),
-  continent: z.enum(["Europe", "Americas", "Africa", "Asia"]),
-  region: z.string(),
+  continent: continentSchema,
+  region: regionSchema,
   coordinates: z.tuple([z.number(), z.number()]),
   timezone: z.string(),
   population: z.number().optional(),

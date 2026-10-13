@@ -14,6 +14,7 @@ export type PreferenceWeights = {
   budgetTier: "mid" | "upper" | "luxury";
 };
 
+/** Global expansion — updated domain model §1 */
 export type Continent = "Europe" | "Americas" | "Africa" | "Asia";
 
 export type Region =
@@ -34,8 +35,7 @@ export type Region =
   | "Southeast Asia"
   | "South Asia"
   | "Central Asia"
-  | "Middle East"
-  | "Oceania";
+  | "Middle East";
 
 export type ClimateZone =
   | "mediterranean"
@@ -47,19 +47,19 @@ export type ClimateZone =
   | "subtropical";
 
 export type Location = {
-  id: string;
+  id: string; // slug, e.g. "lisbon-pt"
   name: string;
   country: string;
-  countryCode: string;
+  countryCode: string; // ISO 3166-1 alpha-2
   continent: Continent;
   region: Region;
-  coordinates: [number, number];
+  coordinates: [number, number]; // [lng, lat]
   timezone: string;
   population?: number;
   isCapital: boolean;
-  tourismTier: 1 | 2 | 3;
-  baseScores: Record<string, number>;
-  tags: string[];
+  tourismTier: 1 | 2 | 3; // 1 = major global destination
+  baseScores: Record<string, number>; // 0-100 per dimension
+  tags: string[]; // e.g. ["beach", "nightlife", "tech", "history"]
   climateZone: ClimateZone;
 };
 
