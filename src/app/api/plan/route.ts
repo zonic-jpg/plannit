@@ -3,31 +3,20 @@ import { z } from "zod";
 import { createTripPlan } from "@/lib/ai/planner";
 import { planFingerprint, readCachedPlan, writeCachedPlan } from "@/lib/db";
 import { DEFAULT_PREFERENCES, type TripPlanResponse } from "@/types/domain";
+import {
+  preferenceWeightsSchema,
+  tripPlanResponseSchema,
+  tripRequestSchema,
+} from "@/types/domain.schema";
 
-const tripRequestSchema = z.object({
-  origin: z.string().min(2).max(8),
-  durationDays: z.number().int().min(1).max(14),
-  startDate: z.string().optional(),
-  freeText: z.string().max(2000).optional(),
-  preferences: z
-    .object({
-      nightlife: z.number().min(0).max(1),
-      outdoor: z.number().min(0).max(1),
-      cultureArt: z.number().min(0).max(1),
-      luxury: z.number().min(0).max(1),
-      crowdTolerance: z.number().min(0).max(1),
-      beachFocus: z.number().min(0).max(1),
-      food: z.number().min(0).max(1),
-      safetyPriority: z.number().min(0).max(1),
-      budgetTier: z.enum(["mid", "upper", "luxury"]),
-    })
-    .optional(),
+const planRequestBodySchema = tripRequestSchema.extend({
+  preferences: preferenceWeightsSchema.optional(),
 });
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const parsed = tripRequestSchema.parse(body);
+    const parsed = planRequestBodySchema.parse(body);
     const draft: TripPlanResponse = {
       request: {
         origin: parsed.origin,
@@ -55,6 +44,7 @@ export async function POST(req: Request) {
     }
 
     const plan = await createTripPlan(draft.request);
+    tripPlanResponseSchema.parse(plan);
     await writeCachedPlan(planFingerprint(plan), plan);
     return NextResponse.json({ ...plan, cached: false });
   } catch (error) {

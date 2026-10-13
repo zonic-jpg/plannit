@@ -1,29 +1,30 @@
-export type BudgetTier = "mid" | "upper" | "luxury";
+/**
+ * Core domain model — Aether spec §3 (Montenegro MVP).
+ * Single source of truth for preference, location, trip, score, cost, and itinerary shapes.
+ */
 
 export type PreferenceWeights = {
-  nightlife: number;
+  nightlife: number; // 0-1
   outdoor: number;
   cultureArt: number;
   luxury: number;
-  crowdTolerance: number;
+  crowdTolerance: number; // 0 = avoid peak, 1 = indifferent
   beachFocus: number;
   food: number;
   safetyPriority: number;
-  budgetTier: BudgetTier;
+  budgetTier: "mid" | "upper" | "luxury";
 };
-
-export type LocationType = "urban" | "coastal" | "bay";
 
 export type Location = {
   id: string;
-  name: string;
-  type: LocationType;
+  name: string; // 'Podgorica' | 'Budva' | 'Kotor' | 'Tivat'
+  type: "urban" | "coastal" | "bay";
   coordinates: [number, number];
-  baseScores: Record<string, number>;
+  baseScores: Record<string, number>; // pre-computed against variables
 };
 
 export type TripRequest = {
-  origin: string;
+  origin: string; // 'ABV'
   durationDays: number;
   startDate?: string;
   preferences: PreferenceWeights;
@@ -53,6 +54,7 @@ export type ItineraryDay = {
   notes: string;
 };
 
+/** API envelope (extends §3 with live signals + summary). */
 export type LiveSignal = {
   kind: "weather" | "event" | "status";
   location: string;
@@ -78,7 +80,7 @@ export const SCORE_DIMENSIONS = [
   "beachFocus",
   "food",
   "safetyPriority",
-] as const;
+] as const satisfies readonly (keyof Omit<PreferenceWeights, "budgetTier">)[];
 
 export type ScoreDimension = (typeof SCORE_DIMENSIONS)[number];
 
