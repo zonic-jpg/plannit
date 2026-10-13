@@ -52,6 +52,15 @@ export function deriveBaseScores(city: SeedInput): Record<ScoringDimensionId, nu
   return scores;
 }
 
+export function assertCompleteBaseScores(
+  scores: Record<string, number>,
+): Record<(typeof SCORING_DIMENSIONS)[number], number> {
+  for (const dim of SCORING_DIMENSIONS) {
+    if (scores[dim] === undefined) scores[dim] = 50;
+  }
+  return scores as Record<(typeof SCORING_DIMENSIONS)[number], number>;
+}
+
 export function enrichLocation(city: SeedInput): Location {
   return { ...city, baseScores: deriveBaseScores(city) };
 }

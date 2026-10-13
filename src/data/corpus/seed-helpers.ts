@@ -1,4 +1,7 @@
-import { enrichLocation } from "@/data/corpus/derive-scores";
+import {
+  assertCompleteBaseScores,
+  enrichLocation,
+} from "@/data/corpus/derive-scores";
 import type {
   ClimateZone,
   Continent,
@@ -26,7 +29,12 @@ export type CitySeedInput = {
 export function city(input: CitySeedInput): Location {
   const enriched = enrichLocation(input);
   if (input.baseScores) {
-    enriched.baseScores = { ...enriched.baseScores, ...input.baseScores };
+    enriched.baseScores = assertCompleteBaseScores({
+      ...enriched.baseScores,
+      ...input.baseScores,
+    });
+  } else {
+    enriched.baseScores = assertCompleteBaseScores(enriched.baseScores);
   }
   return enriched;
 }
