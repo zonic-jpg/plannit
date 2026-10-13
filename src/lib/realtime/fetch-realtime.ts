@@ -1,9 +1,9 @@
-import { LOCATIONS } from "@/data/locations";
+import { getLocationById } from "@/data/corpus/corpus";
 import { TTL, cached } from "@/lib/cache/memory-cache";
 import type { RealtimeSnapshot } from "@/lib/realtime/types";
 
 const SEAWATER_URL =
-  "https://www.morskodobrost.me/en/map" as const;
+  "https://www.morskodobro.me/en/map" as const;
 
 const EVENT_SEED: Record<string, string[]> = {
   budva: ["Summer theatre on the citadel", "Marina jazz weekends"],
@@ -12,6 +12,11 @@ const EVENT_SEED: Record<string, string[]> = {
   podgorica: ["Wine & gastronomy week", "Contemporary art openings"],
 };
 
+function eventKey(locationId: string): string {
+  const base = locationId.split("-")[0] ?? locationId;
+  return base;
+}
+
 async function fetchWeatherMultiplier(
   lat: number,
   lon: number,
@@ -19,7 +24,7 @@ async function fetchWeatherMultiplier(
   const key = process.env.OPENWEATHER_API_KEY;
   if (!key) {
     return {
-      summary: "Mild Adriatic conditions (estimate)",
+      summary: "Seasonal conditions (estimate)",
       tempC: 24,
       multiplier: 1,
       source: "estimate",
@@ -53,15 +58,20 @@ export async function fetchRealtimeForLocation(
 ): Promise<RealtimeSnapshot> {
   const cacheKey = `rt:${locationId}:${date ?? "default"}`;
   return cached(cacheKey, TTL.weather, async () => {
-    const loc = LOCATIONS.find((l) => l.id === locationId) ?? LOCATIONS[0];
-    const [lat, lon] = [loc.coordinates[1], loc.coordinates[0]];
-    const weather = await fetchWeatherMultiplier(lat, lon);
-    const eventsList = EVENT_SEED[locationId] ?? ["Coastal food pop-ups"];
-    const density =
-      loc.type === "coastal" ? 1.08 : loc.type === "bay" ? 1.04 : 0.96;
+    const loc = getLocationById(locationId);
+    if (!loc) {
+      throw new Error(`Unknown location ${locationId}`);
+    }
+    const [lng, lat] = loc.coordinates;
+    const weather = await fetchWeatherMultiplier(lat, lng);
+    const key = eventKey(locationId);
+    const eventsList = EVENT_SEED[key] ?? ["City calendar active this week"];
+    const coastal = loc.tags.some((t) =>
+      ["beach", "coastal", "marina", "bay"].includes(t),
+    );
+    const density = coastal ? 1.06 : loc.tourismTier === 1 ? 1.04 : 0.98;
 
-    const seawaterBase =
-      loc.type === "urban" ? 0.95 : loc.type === "coastal" ? 1.02 : 1.05;
+    const seawaterBase = coastal ? 1.03 : loc.climateZone === "alpine" ? 1.05 : 0.98;
 
     return {
       locationId,
@@ -73,12 +83,12 @@ export async function fetchRealtimeForLocation(
         source: weather.source === "live" ? "live" : "estimate",
       },
       events: {
-        headline: eventsList[0] ?? "Local calendar active",
+        headline: eventsList[0] ?? "Local events",
         densityMultiplier: density,
         items: eventsList,
       },
       seawaterQuality: {
-        status: loc.type === "urban" ? "good" : "excellent",
+        status: coastal ? "excellent" : "good",
         multiplier: seawaterBase,
         officialUrl: SEAWATER_URL,
       },

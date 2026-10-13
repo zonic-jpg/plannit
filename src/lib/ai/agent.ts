@@ -20,37 +20,39 @@ export type TripPlanResult = {
   itinerary: ItineraryDay[];
   agentTrace: AgentTraceStep[];
   summary: string;
+  filterSummary: string;
 };
 
 const AGENT_SUMMARY =
-  "Grounded in scored Adriatic data — ranges only, no invented fares or room inventory.";
+  "Grounded in scored data — flight and hotel figures are ranges only, not live inventory.";
 
 export async function runPlanningAgent(
   request: TripRequest,
 ): Promise<TripPlanResult> {
   const trace: AgentTraceStep[] = [];
-  const prefs = request.preferences;
-
-  const scored = await toolScoreLocations(prefs, request.startDate);
+  const scored = await toolScoreLocations(request);
   trace.push(scored.step);
   const top = scored.data[0];
 
   const costs = toolEstimateCosts(
     request.origin,
-    top?.name ?? "Montenegro",
+    top?.name ?? "Destination",
     request.durationDays,
-    prefs.budgetTier,
+    request.preferences.budgetTier,
   );
   trace.push(costs.step);
 
   const itinerary = toolGenerateItinerary(
     scored.data,
-    prefs,
+    request.preferences,
     request.durationDays,
   );
   trace.push(itinerary.step);
 
-  const explain = toolExplainChoice(top?.id ?? "kotor", scored.data);
+  const explain = toolExplainChoice(
+    top?.id ?? scored.data[0]?.id ?? "",
+    scored.data,
+  );
   trace.push(explain.step);
 
   return {
@@ -58,6 +60,7 @@ export async function runPlanningAgent(
     costEstimate: costs.data,
     itinerary: itinerary.data,
     agentTrace: trace,
+    filterSummary: scored.filterSummary,
     summary: request.freeText?.trim()
       ? `${AGENT_SUMMARY} ${explain.data}`
       : explain.data,

@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "seed:export": "npx tsx scripts/export-seed-json.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -51,6 +52,7 @@
     "jsdom": "^29.1.1",
     "prisma": "^7.10.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^3.2.4"
   }

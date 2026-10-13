@@ -15,6 +15,7 @@ type ApiPlan = {
   itinerary: TripPlanResponse["itinerary"];
   agentTrace?: TripPlanResponse["agentTrace"];
   summary?: string;
+  filterSummary?: string;
 };
 
 async function postPlan(request: ReturnType<typeof buildRequestFromStore>) {
@@ -46,6 +47,7 @@ export function DockChat({ onToggleFilters }: { onToggleFilters: () => void }) {
         cost: api.costEstimate,
         itinerary: api.itinerary,
         summary: api.summary ?? "",
+        filterSummary: api.filterSummary,
         signals: [],
         agentTrace: api.agentTrace,
       };

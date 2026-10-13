@@ -6,7 +6,11 @@ import {
   tripPlanApiResponseSchema,
   tripRequestSchema,
 } from "@/types/domain.schema";
-import { DEFAULT_PREFERENCES } from "@/types/domain";
+import {
+  DEFAULT_PREFERENCES,
+  type TripPlanApiResponse,
+  type TripRequest,
+} from "@/types/domain";
 
 const bodySchema = z.object({
   request: tripRequestSchema.extend({
@@ -21,12 +25,13 @@ export async function POST(req: Request) {
   try {
     const json = await req.json();
     const parsed = bodySchema.parse(json);
-    const request = {
+    const request: TripRequest = {
       ...parsed.request,
       preferences: {
         ...DEFAULT_PREFERENCES,
         ...parsed.request.preferences,
       },
+      filters: parsed.request.filters as TripRequest["filters"],
       freeText: [parsed.request.freeText, parsed.freeTextDelta]
         .filter(Boolean)
         .join(" "),
@@ -34,7 +39,7 @@ export async function POST(req: Request) {
 
     const refined = await runRefineAgent(
       request,
-      parsed.previousPlan,
+      parsed.previousPlan as TripPlanApiResponse,
       parsed.preferenceDelta,
     );
 

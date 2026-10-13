@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { TripMap } from "@/components/map/TripMap";
 import { DockChat } from "@/components/planner/DockChat";
 import { PreferencePanel } from "@/components/planner/PreferencePanel";
+import { RegionFilterChips } from "@/components/planner/RegionFilterChips";
 import { CostBar } from "@/components/results/CostBar";
 import { ItineraryTimeline } from "@/components/results/ItineraryTimeline";
 import { LocationCard } from "@/components/results/LocationCard";
@@ -23,6 +24,7 @@ export function AetherExperience() {
       <SiteHeader />
       <main className="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
         <HeroSection />
+        <RegionFilterChips />
 
         <AnimatePresence>
           {filtersOpen && (
@@ -43,6 +45,9 @@ export function AetherExperience() {
             <p className="text-center text-sm text-stone-500">{copy.emptyPlan}</p>
           ) : (
             <>
+              {plan.filterSummary && (
+                <p className="text-xs text-stone-500">{plan.filterSummary}</p>
+              )}
               {plan.summary && (
                 <p className="text-lg font-light text-stone-200">{plan.summary}</p>
               )}

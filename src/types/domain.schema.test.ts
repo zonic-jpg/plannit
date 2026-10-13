@@ -9,7 +9,8 @@ describe("domain schema contracts", () => {
     const parsed = tripPlanResponseSchema.safeParse(plan);
     expect(parsed.success).toBe(true);
     if (parsed.success) {
-      expect(parsed.data.locations.length).toBe(4);
+      expect(parsed.data.locations.length).toBeGreaterThan(0);
+      expect(parsed.data.locations.length).toBeLessThanOrEqual(8);
       expect(parsed.data.itinerary.length).toBe(5);
     }
   });

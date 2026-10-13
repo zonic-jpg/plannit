@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-/** Runtime validators — kept in sync with `domain.ts`. */
-
 export const preferenceWeightsSchema = z.object({
   nightlife: z.number().min(0).max(1),
   outdoor: z.number().min(0).max(1),
@@ -14,12 +12,52 @@ export const preferenceWeightsSchema = z.object({
   budgetTier: z.enum(["mid", "upper", "luxury"]),
 });
 
+export const tripFiltersSchema = z.object({
+  continents: z
+    .array(z.enum(["Europe", "Americas", "Africa", "Asia"]))
+    .optional(),
+  regions: z.array(z.string()).optional(),
+  climateZones: z
+    .array(
+      z.enum([
+        "mediterranean",
+        "continental",
+        "tropical",
+        "desert",
+        "oceanic",
+        "alpine",
+        "subtropical",
+      ]),
+    )
+    .optional(),
+  requiredTags: z.array(z.string()).optional(),
+  tourismTierMax: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+  maxResults: z.number().int().min(1).max(20).optional(),
+});
+
 export const locationSchema = z.object({
   id: z.string(),
   name: z.string(),
-  type: z.enum(["urban", "coastal", "bay"]),
+  country: z.string(),
+  countryCode: z.string().length(2),
+  continent: z.enum(["Europe", "Americas", "Africa", "Asia"]),
+  region: z.string(),
   coordinates: z.tuple([z.number(), z.number()]),
+  timezone: z.string(),
+  population: z.number().optional(),
+  isCapital: z.boolean(),
+  tourismTier: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   baseScores: z.record(z.string(), z.number()),
+  tags: z.array(z.string()),
+  climateZone: z.enum([
+    "mediterranean",
+    "continental",
+    "tropical",
+    "desert",
+    "oceanic",
+    "alpine",
+    "subtropical",
+  ]),
 });
 
 export const tripRequestSchema = z.object({
@@ -28,12 +66,22 @@ export const tripRequestSchema = z.object({
   startDate: z.string().optional(),
   preferences: preferenceWeightsSchema,
   freeText: z.string().max(2000).optional(),
+  filters: tripFiltersSchema.optional(),
 });
 
 export const scoredLocationSchema = locationSchema.extend({
   totalScore: z.number().min(0).max(100),
   breakdown: z.record(z.string(), z.number()),
   rationale: z.string(),
+  topDimensions: z
+    .array(
+      z.object({
+        id: z.string(),
+        label: z.string(),
+        points: z.number(),
+      }),
+    )
+    .optional(),
 });
 
 export const costEstimateSchema = z.object({
@@ -70,6 +118,7 @@ export const tripPlanApiResponseSchema = z.object({
   itinerary: z.array(itineraryDaySchema),
   agentTrace: z.array(agentTraceStepSchema),
   summary: z.string().optional(),
+  filterSummary: z.string().optional(),
 });
 
 export const tripPlanResponseSchema = z.object({
@@ -78,6 +127,7 @@ export const tripPlanResponseSchema = z.object({
   cost: costEstimateSchema,
   itinerary: z.array(itineraryDaySchema),
   summary: z.string(),
+  filterSummary: z.string().optional(),
   agentTrace: z.array(agentTraceStepSchema).optional(),
   signals: z
     .array(

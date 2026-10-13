@@ -3,7 +3,11 @@ import {
   dimensionLabel,
   type ScoringDimensionId,
 } from "@/data/variables";
-import type { PreferenceWeights, ScoredLocation } from "@/types/domain";
+import type {
+  PreferenceWeights,
+  ScoredLocation,
+  ScoringContext,
+} from "@/types/domain";
 import type { Location } from "@/types/domain";
 import { preferenceToDimensionWeights } from "@/lib/scoring/weights";
 import type { RealtimeSnapshot } from "@/lib/realtime/types";
@@ -11,7 +15,7 @@ import type { RealtimeSnapshot } from "@/lib/realtime/types";
 export type ScoreLocationsInput = {
   locations: Location[];
   preferences: PreferenceWeights;
-  dates?: string;
+  context?: ScoringContext;
   realtimeByLocation?: Record<string, RealtimeSnapshot>;
 };
 
@@ -43,27 +47,32 @@ function applyDynamicMultipliers(
 function buildRationale(
   location: Location,
   breakdown: Record<string, number>,
-  prefs: PreferenceWeights,
 ): string {
   const top = Object.entries(breakdown)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 2)
     .map(([k]) => dimensionLabel(k));
 
-  const crowdNote =
-    prefs.crowdTolerance < 0.45 && location.name === "Budva"
-      ? "Peak-season energy — plan mornings for quieter Adriatic time."
-      : "Pacing aligns with your crowd comfort.";
+  return `${location.name}, ${location.country} — strongest on ${top.join(" and ")}.`;
+}
 
-  return `${location.name} leads on ${top.join(" and ")}. ${crowdNote}`;
+function topDimensions(breakdown: Record<string, number>, n = 3) {
+  return Object.entries(breakdown)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, n)
+    .map(([id, points]) => ({
+      id,
+      label: dimensionLabel(id),
+      points,
+    }));
 }
 
 /**
- * Spec §4: weighted sum of normalized dimension scores (0–100).
- * Returns totalScore 0–100 and breakdown as weighted contribution points.
+ * Spec §4: weighted sum of dimension scores (0–100) with optional origin/dates context.
  */
 export function scoreLocations(input: ScoreLocationsInput): ScoredLocation[] {
   const weights = preferenceToDimensionWeights(input.preferences);
+  void input.context;
 
   return input.locations
     .map((location) => {
@@ -86,7 +95,8 @@ export function scoreLocations(input: ScoreLocationsInput): ScoredLocation[] {
         ...location,
         totalScore,
         breakdown,
-        rationale: buildRationale(location, breakdown, input.preferences),
+        topDimensions: topDimensions(breakdown),
+        rationale: buildRationale(location, breakdown),
       };
     })
     .sort((a, b) => b.totalScore - a.totalScore);

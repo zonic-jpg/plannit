@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { LOCATIONS } from "@/data/locations";
+import { filterLocations, mergeFilters } from "@/data/corpus/filter-locations";
+import { getGlobalCorpus } from "@/data/corpus/load-locations";
 import { estimateTripCost } from "@/lib/cost";
 import { buildItinerary } from "@/lib/itinerary";
 import { fetchRealtimeBatch } from "@/lib/realtime/fetch-realtime";
@@ -56,24 +57,45 @@ function trace(tool: string, input: unknown, outputSummary: string): AgentTraceS
 }
 
 export async function toolScoreLocations(
-  preferences: PreferenceWeights,
-  dates?: string,
-): Promise<{ data: ScoredLocation[]; step: AgentTraceStep; realtime: Record<string, RealtimeSnapshot> }> {
-  const locationIds = LOCATIONS.map((l) => l.id);
-  const realtime = await fetchRealtimeBatch(locationIds, dates);
-  const data = scoreLocations({
-    locations: LOCATIONS,
-    preferences,
-    dates,
+  request: TripRequest,
+): Promise<{
+  data: ScoredLocation[];
+  step: AgentTraceStep;
+  filterSummary: string;
+  realtime: Record<string, RealtimeSnapshot>;
+}> {
+  const filters = mergeFilters(request.filters, {
+    freeText: request.freeText,
+    preferences: request.preferences,
+  });
+  const corpus = getGlobalCorpus();
+  const { locations: filtered, summary: filterSummary } = filterLocations(
+    corpus,
+    filters,
+  );
+
+  const pool = filtered.length > 0 ? filtered : corpus;
+  const locationIds = pool.map((l) => l.id);
+  const realtime = await fetchRealtimeBatch(locationIds, request.startDate);
+
+  const ranked = scoreLocations({
+    locations: pool,
+    preferences: request.preferences,
+    context: { dates: request.startDate, origin: request.origin },
     realtimeByLocation: realtime,
   });
+
+  const max = filters.maxResults ?? 8;
+  const data = ranked.slice(0, max);
+
   return {
     data,
+    filterSummary,
     realtime,
     step: trace(
       "score_locations",
-      { preferences, dates },
-      `Ranked ${data.length} locations; top ${data[0]?.name} (${data[0]?.totalScore}).`,
+      { filters, pool: pool.length },
+      `Top ${data.length}: ${data.map((d) => d.name).join(", ")}.`,
     ),
   };
 }

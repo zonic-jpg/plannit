@@ -1,6 +1,5 @@
 /**
- * Core domain model — Aether spec §3 (Montenegro MVP).
- * Single source of truth for preference, location, trip, score, cost, and itinerary shapes.
+ * Core domain model — Aether (global location engine + preference engine).
  */
 
 export type PreferenceWeights = {
@@ -15,26 +14,83 @@ export type PreferenceWeights = {
   budgetTier: "mid" | "upper" | "luxury";
 };
 
+export type Continent = "Europe" | "Americas" | "Africa" | "Asia";
+
+export type Region =
+  | "Western Europe"
+  | "Southern Europe"
+  | "Northern Europe"
+  | "Eastern Europe"
+  | "Balkans"
+  | "North America"
+  | "Central America"
+  | "South America"
+  | "Caribbean"
+  | "North Africa"
+  | "West Africa"
+  | "East Africa"
+  | "Southern Africa"
+  | "East Asia"
+  | "Southeast Asia"
+  | "South Asia"
+  | "Central Asia"
+  | "Middle East"
+  | "Oceania";
+
+export type ClimateZone =
+  | "mediterranean"
+  | "continental"
+  | "tropical"
+  | "desert"
+  | "oceanic"
+  | "alpine"
+  | "subtropical";
+
 export type Location = {
   id: string;
-  name: string; // 'Podgorica' | 'Budva' | 'Kotor' | 'Tivat'
-  type: "urban" | "coastal" | "bay";
+  name: string;
+  country: string;
+  countryCode: string;
+  continent: Continent;
+  region: Region;
   coordinates: [number, number];
-  baseScores: Record<string, number>; // pre-computed against variables
+  timezone: string;
+  population?: number;
+  isCapital: boolean;
+  tourismTier: 1 | 2 | 3;
+  baseScores: Record<string, number>;
+  tags: string[];
+  climateZone: ClimateZone;
+};
+
+export type TripFilters = {
+  continents?: Continent[];
+  regions?: Region[];
+  climateZones?: ClimateZone[];
+  requiredTags?: string[];
+  tourismTierMax?: 1 | 2 | 3;
+  maxResults?: number;
+};
+
+export type ScoringContext = {
+  dates?: string;
+  origin?: string;
 };
 
 export type TripRequest = {
-  origin: string; // 'ABV'
+  origin: string;
   durationDays: number;
   startDate?: string;
   preferences: PreferenceWeights;
   freeText?: string;
+  filters?: TripFilters;
 };
 
 export type ScoredLocation = Location & {
   totalScore: number;
   breakdown: Record<string, number>;
   rationale: string;
+  topDimensions?: { id: string; label: string; points: number }[];
 };
 
 export type CostEstimate = {
@@ -54,14 +110,6 @@ export type ItineraryDay = {
   notes: string;
 };
 
-/** API envelope (extends §3 with live signals + summary). */
-export type LiveSignal = {
-  kind: "weather" | "event" | "status";
-  location: string;
-  message: string;
-  at: string;
-};
-
 export type AgentTraceStep = {
   tool: string;
   input: unknown;
@@ -75,6 +123,14 @@ export type TripPlanApiResponse = {
   itinerary: ItineraryDay[];
   agentTrace: AgentTraceStep[];
   summary?: string;
+  filterSummary?: string;
+};
+
+export type LiveSignal = {
+  kind: "weather" | "event" | "status";
+  location: string;
+  message: string;
+  at: string;
 };
 
 export type TripPlanResponse = {
@@ -85,6 +141,7 @@ export type TripPlanResponse = {
   summary: string;
   signals: LiveSignal[];
   agentTrace?: AgentTraceStep[];
+  filterSummary?: string;
   realtimeStatus?: "live" | "cached" | "estimate";
 };
 
@@ -119,4 +176,5 @@ export const REFERENCE_TRIP: TripRequest = {
   preferences: DEFAULT_PREFERENCES,
   freeText:
     "Five days from Abuja — mix Adriatic coast, old towns, and one relaxed luxury evening in Porto Montenegro.",
+  filters: { regions: ["Balkans"], maxResults: 8 },
 };

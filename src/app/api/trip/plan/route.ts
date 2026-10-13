@@ -6,7 +6,11 @@ import {
   preferenceWeightsSchema,
   tripRequestSchema,
 } from "@/types/domain.schema";
-import { DEFAULT_PREFERENCES, type TripPlanResponse } from "@/types/domain";
+import {
+  DEFAULT_PREFERENCES,
+  type TripPlanResponse,
+  type TripRequest,
+} from "@/types/domain";
 
 const bodySchema = tripRequestSchema.extend({
   preferences: preferenceWeightsSchema.optional(),
@@ -16,9 +20,10 @@ export async function POST(req: Request) {
   try {
     const json = await req.json();
     const parsed = bodySchema.parse(json);
-    const request = {
+    const request: TripRequest = {
       ...parsed,
       preferences: { ...DEFAULT_PREFERENCES, ...parsed.preferences },
+      filters: parsed.filters as TripRequest["filters"],
     };
 
     const draft: TripPlanResponse = {
@@ -44,6 +49,7 @@ export async function POST(req: Request) {
         itinerary: cached.itinerary,
         agentTrace: cached.agentTrace ?? [],
         summary: cached.summary,
+        filterSummary: cached.filterSummary,
         cached: true,
       });
     }
@@ -57,6 +63,7 @@ export async function POST(req: Request) {
       itinerary: plan.itinerary,
       agentTrace: plan.agentTrace ?? [],
       summary: plan.summary,
+      filterSummary: plan.filterSummary,
       cached: false,
     });
   } catch (error) {
