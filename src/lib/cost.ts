@@ -1,18 +1,5 @@
+import { FLIGHT_BUSINESS_ABV, HOTEL_RANGES_5STAR } from "@/data/locations";
 import type { CostEstimate, PreferenceWeights, TripRequest } from "@/types/domain";
-
-const ORIGIN_FLIGHT_BANDS: Record<
-  string,
-  { min: number; max: number; currency: "USD" | "EUR" }
-> = {
-  ABV: { min: 3200, max: 4800, currency: "USD" },
-  DEFAULT: { min: 2800, max: 4200, currency: "EUR" },
-};
-
-const HOTEL_BY_TIER: Record<PreferenceWeights["budgetTier"], number> = {
-  mid: 180,
-  upper: 320,
-  luxury: 520,
-};
 
 const DAILY_SPEND_BY_TIER: Record<PreferenceWeights["budgetTier"], number> = {
   mid: 120,
@@ -20,12 +7,25 @@ const DAILY_SPEND_BY_TIER: Record<PreferenceWeights["budgetTier"], number> = {
   luxury: 380,
 };
 
+function hotelNightForTier(
+  tier: PreferenceWeights["budgetTier"],
+): number {
+  const bands = Object.values(HOTEL_RANGES_5STAR);
+  const mids = bands.map((b) => (b.min + b.max) / 2);
+  const avg = mids.reduce((a, b) => a + b, 0) / mids.length;
+  if (tier === "luxury") return Math.round(avg * 1.15);
+  if (tier === "mid") return Math.round(avg * 0.75);
+  return Math.round(avg);
+}
+
 export function estimateTripCost(request: TripRequest): CostEstimate {
-  const band =
-    ORIGIN_FLIGHT_BANDS[request.origin.toUpperCase()] ??
-    ORIGIN_FLIGHT_BANDS.DEFAULT;
   const tier = request.preferences.budgetTier;
-  const hotel5StarPerNight = HOTEL_BY_TIER[tier];
+  const band =
+    request.origin.toUpperCase() === "ABV"
+      ? FLIGHT_BUSINESS_ABV
+      : { min: 2800, max: 4200, currency: "EUR" as const };
+
+  const hotel5StarPerNight = hotelNightForTier(tier);
   const dailySpend = DAILY_SPEND_BY_TIER[tier];
   const flightMid = (band.min + band.max) / 2;
   const lodging = hotel5StarPerNight * request.durationDays;
@@ -33,7 +33,11 @@ export function estimateTripCost(request: TripRequest): CostEstimate {
   const total = Math.round(flightMid + lodging + onGround);
 
   return {
-    flightsBusiness: band,
+    flightsBusiness: {
+      min: band.min,
+      max: band.max,
+      currency: band.currency,
+    },
     hotel5StarPerNight,
     dailySpend,
     total,

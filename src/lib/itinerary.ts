@@ -57,7 +57,7 @@ export function buildItinerary(
       afternoon: template.afternoon,
       evening: template.evening,
       notes: scored
-        ? `Match score ${Math.round(scored.totalScore * 100)}% — ${scored.rationale}`
+        ? `Match score ${Math.round(scored.totalScore)} — ${scored.rationale}`
         : "Balanced pacing day.",
     };
   });

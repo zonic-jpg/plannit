@@ -41,7 +41,7 @@ export function TripMap() {
         .setLngLat(loc.coordinates)
         .setPopup(
           new mapboxgl.Popup({ offset: 16 }).setHTML(
-            `<strong>${loc.name}</strong><br/>Score ${Math.round(score * 100)}`,
+            `<strong>${loc.name}</strong><br/>Score ${Math.round(score <= 1 ? score * 100 : score)}`,
           ),
         )
         .addTo(map);

@@ -62,6 +62,21 @@ export type LiveSignal = {
   at: string;
 };
 
+export type AgentTraceStep = {
+  tool: string;
+  input: unknown;
+  outputSummary: string;
+  at: string;
+};
+
+export type TripPlanApiResponse = {
+  scoredLocations: ScoredLocation[];
+  costEstimate: CostEstimate;
+  itinerary: ItineraryDay[];
+  agentTrace: AgentTraceStep[];
+  summary?: string;
+};
+
 export type TripPlanResponse = {
   request: TripRequest;
   locations: ScoredLocation[];
@@ -69,6 +84,8 @@ export type TripPlanResponse = {
   itinerary: ItineraryDay[];
   summary: string;
   signals: LiveSignal[];
+  agentTrace?: AgentTraceStep[];
+  realtimeStatus?: "live" | "cached" | "estimate";
 };
 
 export const SCORE_DIMENSIONS = [

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** Runtime validators — kept in sync with `domain.ts` (spec §3). */
+/** Runtime validators — kept in sync with `domain.ts`. */
 
 export const preferenceWeightsSchema = z.object({
   nightlife: z.number().min(0).max(1),
@@ -31,7 +31,7 @@ export const tripRequestSchema = z.object({
 });
 
 export const scoredLocationSchema = locationSchema.extend({
-  totalScore: z.number().min(0).max(1),
+  totalScore: z.number().min(0).max(100),
   breakdown: z.record(z.string(), z.number()),
   rationale: z.string(),
 });
@@ -57,12 +57,28 @@ export const itineraryDaySchema = z.object({
   notes: z.string(),
 });
 
+export const agentTraceStepSchema = z.object({
+  tool: z.string(),
+  input: z.unknown(),
+  outputSummary: z.string(),
+  at: z.string(),
+});
+
+export const tripPlanApiResponseSchema = z.object({
+  scoredLocations: z.array(scoredLocationSchema),
+  costEstimate: costEstimateSchema,
+  itinerary: z.array(itineraryDaySchema),
+  agentTrace: z.array(agentTraceStepSchema),
+  summary: z.string().optional(),
+});
+
 export const tripPlanResponseSchema = z.object({
   request: tripRequestSchema,
   locations: z.array(scoredLocationSchema),
   cost: costEstimateSchema,
   itinerary: z.array(itineraryDaySchema),
   summary: z.string(),
+  agentTrace: z.array(agentTraceStepSchema).optional(),
   signals: z
     .array(
       z.object({
