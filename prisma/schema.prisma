@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model CachedTripPlan {
+  id        String   @id @default(cuid())
+  fingerprint String @unique
+  payload   Json
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model SavedPreference {
+  id        String   @id @default(cuid())
+  clientId  String   @unique
+  weights   Json
+  updatedAt DateTime @updatedAt
+}
