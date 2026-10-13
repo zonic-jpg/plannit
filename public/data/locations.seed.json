@@ -1,0 +1,2326 @@
+{
+  "version": 1,
+  "locations": [
+    {
+      "id": "london-gb",
+      "name": "London",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        -0.1276,
+        51.5072
+      ],
+      "timezone": "Europe/London",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "nightlife",
+        "food",
+        "history"
+      ],
+      "climateZone": "oceanic",
+      "population": 9000000
+    },
+    {
+      "id": "paris-fr",
+      "name": "Paris",
+      "country": "France",
+      "countryCode": "FR",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        2.3522,
+        48.8566
+      ],
+      "timezone": "Europe/Paris",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "art",
+        "food",
+        "luxury"
+      ],
+      "climateZone": "oceanic",
+      "population": 2100000
+    },
+    {
+      "id": "amsterdam-nl",
+      "name": "Amsterdam",
+      "country": "Netherlands",
+      "countryCode": "NL",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        4.9041,
+        52.3676
+      ],
+      "timezone": "Europe/Amsterdam",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "nightlife",
+        "canal"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "barcelona-es",
+      "name": "Barcelona",
+      "country": "Spain",
+      "countryCode": "ES",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        2.1734,
+        41.3851
+      ],
+      "timezone": "Europe/Madrid",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "culture",
+        "nightlife",
+        "food"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "madrid-es",
+      "name": "Madrid",
+      "country": "Spain",
+      "countryCode": "ES",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        -3.7038,
+        40.4168
+      ],
+      "timezone": "Europe/Madrid",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "nightlife",
+        "art"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "lisbon-pt",
+      "name": "Lisbon",
+      "country": "Portugal",
+      "countryCode": "PT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        -9.1393,
+        38.7223
+      ],
+      "timezone": "Europe/Lisbon",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "nightlife",
+        "beach"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "porto-pt",
+      "name": "Porto",
+      "country": "Portugal",
+      "countryCode": "PT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        -8.6291,
+        41.1579
+      ],
+      "timezone": "Europe/Lisbon",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "culture",
+        "wine"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "berlin-de",
+      "name": "Berlin",
+      "country": "Germany",
+      "countryCode": "DE",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        13.405,
+        52.52
+      ],
+      "timezone": "Europe/Berlin",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "nightlife",
+        "history",
+        "art"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "munich-de",
+      "name": "Munich",
+      "country": "Germany",
+      "countryCode": "DE",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        11.582,
+        48.1351
+      ],
+      "timezone": "Europe/Berlin",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "beer",
+        "alpine"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "rome-it",
+      "name": "Rome",
+      "country": "Italy",
+      "countryCode": "IT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        12.4964,
+        41.9028
+      ],
+      "timezone": "Europe/Rome",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "milan-it",
+      "name": "Milan",
+      "country": "Italy",
+      "countryCode": "IT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        9.19,
+        45.4642
+      ],
+      "timezone": "Europe/Rome",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "fashion",
+        "luxury",
+        "food",
+        "art"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "florence-it",
+      "name": "Florence",
+      "country": "Italy",
+      "countryCode": "IT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        11.2558,
+        43.7696
+      ],
+      "timezone": "Europe/Rome",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "art",
+        "culture",
+        "history"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "venice-it",
+      "name": "Venice",
+      "country": "Italy",
+      "countryCode": "IT",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        12.3155,
+        45.4408
+      ],
+      "timezone": "Europe/Rome",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "history",
+        "romantic"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "vienna-at",
+      "name": "Vienna",
+      "country": "Austria",
+      "countryCode": "AT",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        16.3738,
+        48.2082
+      ],
+      "timezone": "Europe/Vienna",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "music",
+        "history"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "prague-cz",
+      "name": "Prague",
+      "country": "Czechia",
+      "countryCode": "CZ",
+      "continent": "Europe",
+      "region": "Eastern Europe",
+      "coordinates": [
+        14.4378,
+        50.0755
+      ],
+      "timezone": "Europe/Prague",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "history",
+        "nightlife"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "budapest-hu",
+      "name": "Budapest",
+      "country": "Hungary",
+      "countryCode": "HU",
+      "continent": "Europe",
+      "region": "Eastern Europe",
+      "coordinates": [
+        19.0402,
+        47.4979
+      ],
+      "timezone": "Europe/Budapest",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "nightlife",
+        "spa"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "warsaw-pl",
+      "name": "Warsaw",
+      "country": "Poland",
+      "countryCode": "PL",
+      "continent": "Europe",
+      "region": "Eastern Europe",
+      "coordinates": [
+        21.0122,
+        52.2297
+      ],
+      "timezone": "Europe/Warsaw",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "krakow-pl",
+      "name": "Kraków",
+      "country": "Poland",
+      "countryCode": "PL",
+      "continent": "Europe",
+      "region": "Eastern Europe",
+      "coordinates": [
+        19.945,
+        50.0647
+      ],
+      "timezone": "Europe/Warsaw",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "athens-gr",
+      "name": "Athens",
+      "country": "Greece",
+      "countryCode": "GR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        23.7275,
+        37.9838
+      ],
+      "timezone": "Europe/Athens",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "istanbul-tr",
+      "name": "Istanbul",
+      "country": "Türkiye",
+      "countryCode": "TR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        28.9784,
+        41.0082
+      ],
+      "timezone": "Europe/Istanbul",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "history",
+        "food",
+        "nightlife"
+      ],
+      "climateZone": "mediterranean",
+      "population": 15000000
+    },
+    {
+      "id": "copenhagen-dk",
+      "name": "Copenhagen",
+      "country": "Denmark",
+      "countryCode": "DK",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        12.5683,
+        55.6761
+      ],
+      "timezone": "Europe/Copenhagen",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "design",
+        "food",
+        "culture"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "stockholm-se",
+      "name": "Stockholm",
+      "country": "Sweden",
+      "countryCode": "SE",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        18.0686,
+        59.3293
+      ],
+      "timezone": "Europe/Stockholm",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "design",
+        "culture",
+        "waterfront"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "oslo-no",
+      "name": "Oslo",
+      "country": "Norway",
+      "countryCode": "NO",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        10.7522,
+        59.9139
+      ],
+      "timezone": "Europe/Oslo",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "outdoor",
+        "design",
+        "fjord"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "helsinki-fi",
+      "name": "Helsinki",
+      "country": "Finland",
+      "countryCode": "FI",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        24.9384,
+        60.1699
+      ],
+      "timezone": "Europe/Helsinki",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "design",
+        "sauna",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "zurich-ch",
+      "name": "Zurich",
+      "country": "Switzerland",
+      "countryCode": "CH",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        8.5417,
+        47.3769
+      ],
+      "timezone": "Europe/Zurich",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "finance",
+        "lake"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "geneva-ch",
+      "name": "Geneva",
+      "country": "Switzerland",
+      "countryCode": "CH",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        6.1432,
+        46.2044
+      ],
+      "timezone": "Europe/Zurich",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "lake",
+        "diplomacy"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "dublin-ie",
+      "name": "Dublin",
+      "country": "Ireland",
+      "countryCode": "IE",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        -6.2603,
+        53.3498
+      ],
+      "timezone": "Europe/Dublin",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "pub",
+        "literature"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "edinburgh-gb",
+      "name": "Edinburgh",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        -3.1883,
+        55.9533
+      ],
+      "timezone": "Europe/London",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "festival",
+        "culture"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "brussels-be",
+      "name": "Brussels",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "continent": "Europe",
+      "region": "Western Europe",
+      "coordinates": [
+        4.3517,
+        50.8503
+      ],
+      "timezone": "Europe/Brussels",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "food",
+        "EU",
+        "culture"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "nice-fr",
+      "name": "Nice",
+      "country": "France",
+      "countryCode": "FR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        7.262,
+        43.7102
+      ],
+      "timezone": "Europe/Paris",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "luxury",
+        "riviera"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "valencia-es",
+      "name": "Valencia",
+      "country": "Spain",
+      "countryCode": "ES",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        -0.3763,
+        39.4699
+      ],
+      "timezone": "Europe/Madrid",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "beach",
+        "food",
+        "culture"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "seville-es",
+      "name": "Seville",
+      "country": "Spain",
+      "countryCode": "ES",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        -5.9845,
+        37.3891
+      ],
+      "timezone": "Europe/Madrid",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "history",
+        "flamenco"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "dubrovnik-hr",
+      "name": "Dubrovnik",
+      "country": "Croatia",
+      "countryCode": "HR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        18.0944,
+        42.6507
+      ],
+      "timezone": "Europe/Zagreb",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "beach",
+        "culture"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "split-hr",
+      "name": "Split",
+      "country": "Croatia",
+      "countryCode": "HR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        16.4402,
+        43.5081
+      ],
+      "timezone": "Europe/Zagreb",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "beach",
+        "history",
+        "coastal"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "zagreb-hr",
+      "name": "Zagreb",
+      "country": "Croatia",
+      "countryCode": "HR",
+      "continent": "Europe",
+      "region": "Southern Europe",
+      "coordinates": [
+        15.9819,
+        45.815
+      ],
+      "timezone": "Europe/Zagreb",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "café"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "belgrade-rs",
+      "name": "Belgrade",
+      "country": "Serbia",
+      "countryCode": "RS",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        20.4489,
+        44.7866
+      ],
+      "timezone": "Europe/Belgrade",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "nightlife",
+        "culture",
+        "river"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "sarajevo-ba",
+      "name": "Sarajevo",
+      "country": "Bosnia and Herzegovina",
+      "countryCode": "BA",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        18.4131,
+        43.8563
+      ],
+      "timezone": "Europe/Sarajevo",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "history",
+        "culture",
+        "mountain"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "tirana-al",
+      "name": "Tirana",
+      "country": "Albania",
+      "countryCode": "AL",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        19.8187,
+        41.3275
+      ],
+      "timezone": "Europe/Tirane",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "mountain"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "skopje-mk",
+      "name": "Skopje",
+      "country": "North Macedonia",
+      "countryCode": "MK",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        21.4254,
+        41.9981
+      ],
+      "timezone": "Europe/Skopje",
+      "isCapital": true,
+      "tourismTier": 3,
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "podgorica-me",
+      "name": "Podgorica",
+      "country": "Montenegro",
+      "countryCode": "ME",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        19.2594,
+        42.4304
+      ],
+      "timezone": "Europe/Podgorica",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "urban",
+        "food",
+        "river"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "kotor-me",
+      "name": "Kotor",
+      "country": "Montenegro",
+      "countryCode": "ME",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        18.7683,
+        42.4247
+      ],
+      "timezone": "Europe/Podgorica",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "bay",
+        "cruise"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "budva-me",
+      "name": "Budva",
+      "country": "Montenegro",
+      "countryCode": "ME",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        18.8383,
+        42.2911
+      ],
+      "timezone": "Europe/Podgorica",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "nightlife",
+        "coastal"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "tivat-me",
+      "name": "Tivat",
+      "country": "Montenegro",
+      "countryCode": "ME",
+      "continent": "Europe",
+      "region": "Balkans",
+      "coordinates": [
+        18.7235,
+        42.434
+      ],
+      "timezone": "Europe/Podgorica",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "marina",
+        "yacht"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "tallinn-ee",
+      "name": "Tallinn",
+      "country": "Estonia",
+      "countryCode": "EE",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        24.7536,
+        59.437
+      ],
+      "timezone": "Europe/Tallinn",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "history",
+        "tech",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "riga-lv",
+      "name": "Riga",
+      "country": "Latvia",
+      "countryCode": "LV",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        24.1052,
+        56.9496
+      ],
+      "timezone": "Europe/Riga",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "architecture",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "reykjavik-is",
+      "name": "Reykjavík",
+      "country": "Iceland",
+      "countryCode": "IS",
+      "continent": "Europe",
+      "region": "Northern Europe",
+      "coordinates": [
+        -21.9426,
+        64.1466
+      ],
+      "timezone": "Atlantic/Reykjavik",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "outdoor",
+        "nature",
+        "aurora"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "new-york-us",
+      "name": "New York",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -74.006,
+        40.7128
+      ],
+      "timezone": "America/New_York",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "nightlife",
+        "art"
+      ],
+      "climateZone": "continental",
+      "population": 8000000
+    },
+    {
+      "id": "los-angeles-us",
+      "name": "Los Angeles",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -118.2437,
+        34.0522
+      ],
+      "timezone": "America/Los_Angeles",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "entertainment",
+        "food"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "miami-us",
+      "name": "Miami",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -80.1918,
+        25.7617
+      ],
+      "timezone": "America/New_York",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "nightlife",
+        "luxury"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "chicago-us",
+      "name": "Chicago",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -87.6298,
+        41.8781
+      ],
+      "timezone": "America/Chicago",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "architecture",
+        "food",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "san-francisco-us",
+      "name": "San Francisco",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -122.4194,
+        37.7749
+      ],
+      "timezone": "America/Los_Angeles",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "tech",
+        "food",
+        "culture"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "seattle-us",
+      "name": "Seattle",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -122.3321,
+        47.6062
+      ],
+      "timezone": "America/Los_Angeles",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "tech",
+        "coffee",
+        "outdoor"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "boston-us",
+      "name": "Boston",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -71.0589,
+        42.3601
+      ],
+      "timezone": "America/New_York",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "education",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "austin-us",
+      "name": "Austin",
+      "country": "United States",
+      "countryCode": "US",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -97.7431,
+        30.2672
+      ],
+      "timezone": "America/Chicago",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "music",
+        "tech",
+        "food"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "toronto-ca",
+      "name": "Toronto",
+      "country": "Canada",
+      "countryCode": "CA",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -79.3832,
+        43.6532
+      ],
+      "timezone": "America/Toronto",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "multicultural"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "vancouver-ca",
+      "name": "Vancouver",
+      "country": "Canada",
+      "countryCode": "CA",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -123.1207,
+        49.2827
+      ],
+      "timezone": "America/Vancouver",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "outdoor",
+        "mountain",
+        "ocean"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "montreal-ca",
+      "name": "Montreal",
+      "country": "Canada",
+      "countryCode": "CA",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -73.5673,
+        45.5017
+      ],
+      "timezone": "America/Toronto",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "festival"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "mexico-city-mx",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "countryCode": "MX",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -99.1332,
+        19.4326
+      ],
+      "timezone": "America/Mexico_City",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "art",
+        "history"
+      ],
+      "climateZone": "subtropical",
+      "population": 9000000
+    },
+    {
+      "id": "cancun-mx",
+      "name": "Cancún",
+      "country": "Mexico",
+      "countryCode": "MX",
+      "continent": "Americas",
+      "region": "North America",
+      "coordinates": [
+        -86.8515,
+        21.1619
+      ],
+      "timezone": "America/Cancun",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "resort",
+        "nightlife"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "buenos-aires-ar",
+      "name": "Buenos Aires",
+      "country": "Argentina",
+      "countryCode": "AR",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -58.3816,
+        -34.6037
+      ],
+      "timezone": "America/Argentina/Buenos_Aires",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "tango",
+        "nightlife"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "rio-br",
+      "name": "Rio de Janeiro",
+      "country": "Brazil",
+      "countryCode": "BR",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -43.1729,
+        -22.9068
+      ],
+      "timezone": "America/Sao_Paulo",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "culture",
+        "carnival"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "sao-paulo-br",
+      "name": "São Paulo",
+      "country": "Brazil",
+      "countryCode": "BR",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -46.6333,
+        -23.5505
+      ],
+      "timezone": "America/Sao_Paulo",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "nightlife",
+        "business"
+      ],
+      "climateZone": "subtropical",
+      "population": 12000000
+    },
+    {
+      "id": "santiago-cl",
+      "name": "Santiago",
+      "country": "Chile",
+      "countryCode": "CL",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -70.6693,
+        -33.4489
+      ],
+      "timezone": "America/Santiago",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "wine",
+        "mountain",
+        "culture"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "lima-pe",
+      "name": "Lima",
+      "country": "Peru",
+      "countryCode": "PE",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -77.0428,
+        -12.0464
+      ],
+      "timezone": "America/Lima",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "culture",
+        "history"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "bogota-co",
+      "name": "Bogotá",
+      "country": "Colombia",
+      "countryCode": "CO",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -74.0721,
+        4.711
+      ],
+      "timezone": "America/Bogota",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "coffee",
+        "mountain"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "cartagena-co",
+      "name": "Cartagena",
+      "country": "Colombia",
+      "countryCode": "CO",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -75.4794,
+        10.391
+      ],
+      "timezone": "America/Bogota",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "history",
+        "colonial"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "medellin-co",
+      "name": "Medellín",
+      "country": "Colombia",
+      "countryCode": "CO",
+      "continent": "Americas",
+      "region": "South America",
+      "coordinates": [
+        -75.5636,
+        6.2476
+      ],
+      "timezone": "America/Bogota",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "innovation",
+        "mountain"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "panama-city-pa",
+      "name": "Panama City",
+      "country": "Panama",
+      "countryCode": "PA",
+      "continent": "Americas",
+      "region": "Central America",
+      "coordinates": [
+        -79.5199,
+        8.9824
+      ],
+      "timezone": "America/Panama",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "canal",
+        "business",
+        "coastal"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "san-jose-cr",
+      "name": "San José",
+      "country": "Costa Rica",
+      "countryCode": "CR",
+      "continent": "Americas",
+      "region": "Central America",
+      "coordinates": [
+        -84.0907,
+        9.9281
+      ],
+      "timezone": "America/Costa_Rica",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "eco",
+        "outdoor",
+        "nature"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "havana-cu",
+      "name": "Havana",
+      "country": "Cuba",
+      "countryCode": "CU",
+      "continent": "Americas",
+      "region": "Caribbean",
+      "coordinates": [
+        -82.3666,
+        23.1136
+      ],
+      "timezone": "America/Havana",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "music"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "cape-town-za",
+      "name": "Cape Town",
+      "country": "South Africa",
+      "countryCode": "ZA",
+      "continent": "Africa",
+      "region": "Southern Africa",
+      "coordinates": [
+        18.4241,
+        -33.9249
+      ],
+      "timezone": "Africa/Johannesburg",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "mountain",
+        "beach",
+        "wine",
+        "outdoor"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "johannesburg-za",
+      "name": "Johannesburg",
+      "country": "South Africa",
+      "countryCode": "ZA",
+      "continent": "Africa",
+      "region": "Southern Africa",
+      "coordinates": [
+        28.0473,
+        -26.2041
+      ],
+      "timezone": "Africa/Johannesburg",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "business",
+        "culture",
+        "safari-gateway"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "nairobi-ke",
+      "name": "Nairobi",
+      "country": "Kenya",
+      "countryCode": "KE",
+      "continent": "Africa",
+      "region": "East Africa",
+      "coordinates": [
+        36.8219,
+        -1.2921
+      ],
+      "timezone": "Africa/Nairobi",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "safari",
+        "business",
+        "culture"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "lagos-ng",
+      "name": "Lagos",
+      "country": "Nigeria",
+      "countryCode": "NG",
+      "continent": "Africa",
+      "region": "West Africa",
+      "coordinates": [
+        3.3792,
+        6.5244
+      ],
+      "timezone": "Africa/Lagos",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "business",
+        "nightlife",
+        "music",
+        "beach"
+      ],
+      "climateZone": "tropical",
+      "population": 15000000
+    },
+    {
+      "id": "accra-gh",
+      "name": "Accra",
+      "country": "Ghana",
+      "countryCode": "GH",
+      "continent": "Africa",
+      "region": "West Africa",
+      "coordinates": [
+        -0.187,
+        5.6037
+      ],
+      "timezone": "Africa/Accra",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "beach",
+        "culture",
+        "food"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "marrakech-ma",
+      "name": "Marrakech",
+      "country": "Morocco",
+      "countryCode": "MA",
+      "continent": "Africa",
+      "region": "North Africa",
+      "coordinates": [
+        -7.9811,
+        31.6295
+      ],
+      "timezone": "Africa/Casablanca",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "market",
+        "desert",
+        "history"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "casablanca-ma",
+      "name": "Casablanca",
+      "country": "Morocco",
+      "countryCode": "MA",
+      "continent": "Africa",
+      "region": "North Africa",
+      "coordinates": [
+        -7.5898,
+        33.5731
+      ],
+      "timezone": "Africa/Casablanca",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "coastal",
+        "business",
+        "culture"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "cairo-eg",
+      "name": "Cairo",
+      "country": "Egypt",
+      "countryCode": "EG",
+      "continent": "Africa",
+      "region": "North Africa",
+      "coordinates": [
+        31.2357,
+        30.0444
+      ],
+      "timezone": "Africa/Cairo",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "pyramids"
+      ],
+      "climateZone": "desert",
+      "population": 10000000
+    },
+    {
+      "id": "tunis-tn",
+      "name": "Tunis",
+      "country": "Tunisia",
+      "countryCode": "TN",
+      "continent": "Africa",
+      "region": "North Africa",
+      "coordinates": [
+        10.1815,
+        36.8065
+      ],
+      "timezone": "Africa/Tunis",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "history",
+        "medina",
+        "coastal"
+      ],
+      "climateZone": "mediterranean"
+    },
+    {
+      "id": "dakar-sn",
+      "name": "Dakar",
+      "country": "Senegal",
+      "countryCode": "SN",
+      "continent": "Africa",
+      "region": "West Africa",
+      "coordinates": [
+        -17.4677,
+        14.7167
+      ],
+      "timezone": "Africa/Dakar",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "coastal",
+        "culture",
+        "music"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "addis-ababa-et",
+      "name": "Addis Ababa",
+      "country": "Ethiopia",
+      "countryCode": "ET",
+      "continent": "Africa",
+      "region": "East Africa",
+      "coordinates": [
+        38.7578,
+        9.032
+      ],
+      "timezone": "Africa/Addis_Ababa",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "culture",
+        "coffee",
+        "history"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "kigali-rw",
+      "name": "Kigali",
+      "country": "Rwanda",
+      "countryCode": "RW",
+      "continent": "Africa",
+      "region": "East Africa",
+      "coordinates": [
+        30.0619,
+        -1.9441
+      ],
+      "timezone": "Africa/Kigali",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "clean",
+        "tech",
+        "mountain"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "zanzibar-tz",
+      "name": "Zanzibar City",
+      "country": "Tanzania",
+      "countryCode": "TZ",
+      "continent": "Africa",
+      "region": "East Africa",
+      "coordinates": [
+        39.1989,
+        -6.1659
+      ],
+      "timezone": "Africa/Dar_es_Salaam",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "history",
+        "spice"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "livingstone-zm",
+      "name": "Livingstone",
+      "country": "Zambia",
+      "countryCode": "ZM",
+      "continent": "Africa",
+      "region": "Southern Africa",
+      "coordinates": [
+        25.8583,
+        -17.8419
+      ],
+      "timezone": "Africa/Lusaka",
+      "isCapital": false,
+      "tourismTier": 2,
+      "tags": [
+        "outdoor",
+        "waterfall",
+        "safari"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "port-louis-mu",
+      "name": "Port Louis",
+      "country": "Mauritius",
+      "countryCode": "MU",
+      "continent": "Africa",
+      "region": "East Africa",
+      "coordinates": [
+        57.5012,
+        -20.1609
+      ],
+      "timezone": "Indian/Mauritius",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "luxury",
+        "island"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "tokyo-jp",
+      "name": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "continent": "Asia",
+      "region": "East Asia",
+      "coordinates": [
+        139.6917,
+        35.6895
+      ],
+      "timezone": "Asia/Tokyo",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "tech",
+        "nightlife"
+      ],
+      "climateZone": "subtropical",
+      "population": 14000000
+    },
+    {
+      "id": "osaka-jp",
+      "name": "Osaka",
+      "country": "Japan",
+      "countryCode": "JP",
+      "continent": "Asia",
+      "region": "East Asia",
+      "coordinates": [
+        135.5023,
+        34.6937
+      ],
+      "timezone": "Asia/Tokyo",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "culture",
+        "nightlife"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "seoul-kr",
+      "name": "Seoul",
+      "country": "South Korea",
+      "countryCode": "KR",
+      "continent": "Asia",
+      "region": "East Asia",
+      "coordinates": [
+        126.978,
+        37.5665
+      ],
+      "timezone": "Asia/Seoul",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "food",
+        "tech",
+        "nightlife"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "singapore-sg",
+      "name": "Singapore",
+      "country": "Singapore",
+      "countryCode": "SG",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        103.8198,
+        1.3521
+      ],
+      "timezone": "Asia/Singapore",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "luxury",
+        "garden",
+        "business"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "bangkok-th",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "countryCode": "TH",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        100.5018,
+        13.7563
+      ],
+      "timezone": "Asia/Bangkok",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "temple",
+        "nightlife",
+        "market"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "chiang-mai-th",
+      "name": "Chiang Mai",
+      "country": "Thailand",
+      "countryCode": "TH",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        98.9853,
+        18.7883
+      ],
+      "timezone": "Asia/Bangkok",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "culture",
+        "temple",
+        "mountain"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "hong-kong-hk",
+      "name": "Hong Kong",
+      "country": "Hong Kong",
+      "countryCode": "HK",
+      "continent": "Asia",
+      "region": "East Asia",
+      "coordinates": [
+        114.1694,
+        22.3193
+      ],
+      "timezone": "Asia/Hong_Kong",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "skyline",
+        "luxury",
+        "market"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "dubai-ae",
+      "name": "Dubai",
+      "country": "United Arab Emirates",
+      "countryCode": "AE",
+      "continent": "Asia",
+      "region": "Middle East",
+      "coordinates": [
+        55.2708,
+        25.2048
+      ],
+      "timezone": "Asia/Dubai",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "desert",
+        "beach",
+        "shopping"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "abu-dhabi-ae",
+      "name": "Abu Dhabi",
+      "country": "United Arab Emirates",
+      "countryCode": "AE",
+      "continent": "Asia",
+      "region": "Middle East",
+      "coordinates": [
+        54.3773,
+        24.4539
+      ],
+      "timezone": "Asia/Dubai",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "culture",
+        "mosque"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "doha-qa",
+      "name": "Doha",
+      "country": "Qatar",
+      "countryCode": "QA",
+      "continent": "Asia",
+      "region": "Middle East",
+      "coordinates": [
+        51.531,
+        25.2854
+      ],
+      "timezone": "Asia/Qatar",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "luxury",
+        "museum",
+        "desert"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "bali-id",
+      "name": "Denpasar (Bali)",
+      "country": "Indonesia",
+      "countryCode": "ID",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        115.2126,
+        -8.6705
+      ],
+      "timezone": "Asia/Makassar",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "culture",
+        "wellness",
+        "temple"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "phuket-th",
+      "name": "Phuket",
+      "country": "Thailand",
+      "countryCode": "TH",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        98.3923,
+        7.8804
+      ],
+      "timezone": "Asia/Bangkok",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "island",
+        "resort"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "taipei-tw",
+      "name": "Taipei",
+      "country": "Taiwan",
+      "countryCode": "TW",
+      "continent": "Asia",
+      "region": "East Asia",
+      "coordinates": [
+        121.5654,
+        25.033
+      ],
+      "timezone": "Asia/Taipei",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "night market",
+        "tech"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "kuala-lumpur-my",
+      "name": "Kuala Lumpur",
+      "country": "Malaysia",
+      "countryCode": "MY",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        101.6869,
+        3.139
+      ],
+      "timezone": "Asia/Kuala_Lumpur",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "skyline",
+        "culture"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "mumbai-in",
+      "name": "Mumbai",
+      "country": "India",
+      "countryCode": "IN",
+      "continent": "Asia",
+      "region": "South Asia",
+      "coordinates": [
+        72.8777,
+        19.076
+      ],
+      "timezone": "Asia/Kolkata",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "film",
+        "coastal",
+        "market"
+      ],
+      "climateZone": "tropical",
+      "population": 20000000
+    },
+    {
+      "id": "delhi-in",
+      "name": "Delhi",
+      "country": "India",
+      "countryCode": "IN",
+      "continent": "Asia",
+      "region": "South Asia",
+      "coordinates": [
+        77.209,
+        28.6139
+      ],
+      "timezone": "Asia/Kolkata",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "jaipur-in",
+      "name": "Jaipur",
+      "country": "India",
+      "countryCode": "IN",
+      "continent": "Asia",
+      "region": "South Asia",
+      "coordinates": [
+        75.7873,
+        26.9124
+      ],
+      "timezone": "Asia/Kolkata",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "history",
+        "palace",
+        "culture"
+      ],
+      "climateZone": "desert"
+    },
+    {
+      "id": "hanoi-vn",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "countryCode": "VN",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        105.8342,
+        21.0278
+      ],
+      "timezone": "Asia/Ho_Chi_Minh",
+      "isCapital": true,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "history",
+        "lake"
+      ],
+      "climateZone": "subtropical"
+    },
+    {
+      "id": "ho-chi-minh-vn",
+      "name": "Ho Chi Minh City",
+      "country": "Vietnam",
+      "countryCode": "VN",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        106.6297,
+        10.8231
+      ],
+      "timezone": "Asia/Ho_Chi_Minh",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "history",
+        "nightlife"
+      ],
+      "climateZone": "tropical"
+    },
+    {
+      "id": "sydney-au",
+      "name": "Sydney",
+      "country": "Australia",
+      "countryCode": "AU",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        151.2093,
+        -33.8688
+      ],
+      "timezone": "Australia/Sydney",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "harbour",
+        "outdoor",
+        "pacific"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "melbourne-au",
+      "name": "Melbourne",
+      "country": "Australia",
+      "countryCode": "AU",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        144.9631,
+        -37.8136
+      ],
+      "timezone": "Australia/Melbourne",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "food",
+        "culture",
+        "coffee",
+        "pacific"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "auckland-nz",
+      "name": "Auckland",
+      "country": "New Zealand",
+      "countryCode": "NZ",
+      "continent": "Asia",
+      "region": "Southeast Asia",
+      "coordinates": [
+        174.7633,
+        -36.8485
+      ],
+      "timezone": "Pacific/Auckland",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "harbour",
+        "outdoor",
+        "wine",
+        "pacific"
+      ],
+      "climateZone": "oceanic"
+    },
+    {
+      "id": "tbilisi-ge",
+      "name": "Tbilisi",
+      "country": "Georgia",
+      "countryCode": "GE",
+      "continent": "Asia",
+      "region": "Central Asia",
+      "coordinates": [
+        44.8271,
+        41.7151
+      ],
+      "timezone": "Asia/Tbilisi",
+      "isCapital": true,
+      "tourismTier": 2,
+      "tags": [
+        "food",
+        "wine",
+        "culture"
+      ],
+      "climateZone": "continental"
+    },
+    {
+      "id": "tel-aviv-il",
+      "name": "Tel Aviv",
+      "country": "Israel",
+      "countryCode": "IL",
+      "continent": "Asia",
+      "region": "Middle East",
+      "coordinates": [
+        34.7818,
+        32.0853
+      ],
+      "timezone": "Asia/Jerusalem",
+      "isCapital": false,
+      "tourismTier": 1,
+      "tags": [
+        "beach",
+        "nightlife",
+        "tech",
+        "food"
+      ],
+      "climateZone": "mediterranean"
+    }
+  ]
+}
